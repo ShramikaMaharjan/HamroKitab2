@@ -1,0 +1,966 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My Orders - HamroKitab</title>
+
+  <style>
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "DM Sans", Arial, sans-serif;
+      background: #fbfaf8;
+      color: #252545;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    button {
+      font-family: inherit;
+    }
+
+    /* ================= COMPACT HEADER ================= */
+
+    .orders-header {
+      background: white;
+      border-bottom: 1px solid #e9e8f0;
+      padding: 16px 0;
+      margin-bottom: 30px;
+    }
+
+    .header-content {
+      max-width: 1120px;
+      margin: auto;
+      padding: 0 24px;
+
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    /* LOGO */
+
+    .logo {
+      display: flex;
+      align-items: center;
+      flex-shrink: 0;
+    }
+
+    .logo img {
+      width: 125px;
+      height: auto;
+      object-fit: contain;
+    }
+
+    /* PAGE TITLE */
+
+    .header-title {
+      flex: 1;
+      border-left: 1px solid #e8e7ef;
+      padding-left: 28px;
+    }
+
+    .header-title h1 {
+      margin: 0;
+      color: #252545;
+      font-size: 25px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .header-title p {
+      margin-top: 3px;
+      color: #85859a;
+      font-size: 12px;
+    }
+
+    /* BROWSE BUTTON */
+
+    .browse-btn {
+      display: inline-block;
+      padding: 10px 15px;
+
+      border-radius: 8px;
+      background: #363795;
+      color: white;
+
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+
+      transition: 0.25s ease;
+    }
+
+    .browse-btn:hover {
+      background: #252545;
+    }
+
+    /* ================= MAIN CONTENT ================= */
+
+    .page {
+      max-width: 1120px;
+      margin: auto;
+      padding: 0 24px 50px;
+    }
+
+    .page-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .page-top h2 {
+      color: #252545;
+      font-size: 20px;
+      font-weight: 700;
+    }
+
+    .order-count {
+      color: #77778d;
+      font-size: 13px;
+    }
+
+    /* ================= EMPTY STATE ================= */
+
+    .empty-state {
+      background: white;
+      border: 1px solid #ebeaf2;
+      border-radius: 18px;
+      padding: 65px 25px;
+      text-align: center;
+    }
+
+    .empty-icon {
+      width: 65px;
+      height: 65px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      margin: 0 auto 20px;
+
+      border-radius: 50%;
+      background: #f0efff;
+      color: #363795;
+      font-size: 28px;
+    }
+
+    .empty-state h2 {
+      margin-bottom: 8px;
+      font-size: 22px;
+    }
+
+    .empty-state p {
+      margin-bottom: 24px;
+      color: #77778d;
+      font-size: 14px;
+    }
+
+    .empty-btn {
+      display: inline-block;
+      padding: 12px 20px;
+
+      border-radius: 9px;
+      background: #363795;
+      color: white;
+
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .empty-btn:hover {
+      background: #252545;
+    }
+
+    /* ================= ORDER CARD ================= */
+
+    .order-card {
+      background: white;
+      border: 1px solid #e9e8f0;
+      border-radius: 18px;
+      margin-bottom: 24px;
+      overflow: hidden;
+
+      transition: 0.25s ease;
+    }
+
+    .order-card:hover {
+      box-shadow: 0 8px 28px rgba(37, 37, 69, 0.07);
+    }
+
+    /* ================= ORDER TOP ================= */
+
+    .order-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+
+      padding: 20px 24px;
+      background: #fcfcff;
+      border-bottom: 1px solid #eeeeF5;
+    }
+
+    .order-label {
+      color: #88889b;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .order-number {
+      color: #252545;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .order-date {
+      color: #85859a;
+      font-size: 12px;
+      margin-top: 3px;
+    }
+
+    /* ================= STATUS ================= */
+
+    .status {
+      display: inline-block;
+      padding: 7px 12px;
+
+      border-radius: 30px;
+      background: #f0efff;
+      color: #363795;
+
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.3px;
+    }
+
+    /* ================= PRODUCT SECTION ================= */
+
+    .product-section {
+      display: flex;
+      gap: 22px;
+      padding: 25px 24px;
+    }
+
+    .book-image {
+      width: 125px;
+      height: 160px;
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      overflow: hidden;
+      border-radius: 10px;
+      background: #f1f0f7;
+
+      color: #85859a;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .book-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .product-details {
+      flex: 1;
+    }
+
+    .product-details h2 {
+      margin-bottom: 5px;
+
+      color: #252545;
+      font-size: 21px;
+      font-weight: 700;
+    }
+
+    .author {
+      margin-bottom: 12px;
+      color: #77778d;
+      font-size: 13px;
+    }
+
+    .book-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 17px;
+    }
+
+    .meta-tag {
+      padding: 5px 9px;
+
+      border-radius: 6px;
+      background: #f5f4fa;
+      color: #62627d;
+
+      font-size: 11px;
+    }
+
+    .product-price {
+      color: #363795;
+      font-size: 19px;
+      font-weight: 700;
+    }
+
+    /* ================= INFORMATION ================= */
+
+    .information-section {
+      padding: 24px;
+      border-top: 1px solid #eeeeF5;
+    }
+
+    .section-title {
+      margin-bottom: 18px;
+
+      color: #252545;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .information-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px 25px;
+    }
+
+    .information-item {
+      min-width: 0;
+    }
+
+    .information-item.full-width {
+      grid-column: 1 / -1;
+    }
+
+    .information-item label {
+      display: block;
+      margin-bottom: 3px;
+
+      color: #9292a5;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+
+    .information-item p {
+      color: #444461;
+      font-size: 13px;
+      overflow-wrap: anywhere;
+    }
+
+    /* ================= ORDER FOOTER ================= */
+
+    .order-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+
+      padding: 20px 24px;
+      border-top: 1px solid #eeeeF5;
+      background: #fcfcff;
+    }
+
+    .total-label {
+      color: #85859a;
+      font-size: 12px;
+    }
+
+    .total-price {
+      color: #252545;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .cancel-btn {
+      padding: 10px 16px;
+
+      border: 1px solid #e2bfc5;
+      border-radius: 8px;
+
+      background: #fff7f8;
+      color: #b34c60;
+
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+
+      transition: 0.25s ease;
+    }
+
+    .cancel-btn:hover {
+      background: #b34c60;
+      color: white;
+    }
+
+    .status-message {
+      color: #85859a;
+      font-size: 12px;
+    }
+
+    /* ================= RESPONSIVE ================= */
+
+    @media (max-width: 700px) {
+
+      .orders-header {
+        padding: 14px 0;
+      }
+
+      .header-content {
+        padding: 0 18px;
+        gap: 15px;
+        flex-wrap: wrap;
+      }
+
+      .logo img {
+        width: 105px;
+      }
+
+      .header-title {
+        padding-left: 15px;
+      }
+
+      .header-title h1 {
+        font-size: 20px;
+      }
+
+      .header-title p {
+        font-size: 11px;
+      }
+
+      .browse-btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      .product-section {
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .book-image {
+        width: 95px;
+        height: 125px;
+      }
+
+      .product-details h2 {
+        font-size: 17px;
+      }
+
+      .information-section {
+        padding: 20px;
+      }
+
+      .order-top {
+        padding: 18px 20px;
+      }
+
+      .order-footer {
+        padding: 18px 20px;
+      }
+
+    }
+
+    @media (max-width: 480px) {
+
+      .page {
+        padding: 0 15px 35px;
+      }
+
+      .product-section {
+        align-items: flex-start;
+      }
+
+      .book-image {
+        width: 82px;
+        height: 110px;
+      }
+
+      .information-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+      }
+
+      .information-item.full-width {
+        grid-column: auto;
+      }
+
+      .order-top {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .order-footer {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .cancel-btn {
+        width: 100%;
+      }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+
+<!-- ================= HEADER ================= -->
+
+<header class="orders-header">
+
+  <div class="header-content">
+
+    <!-- LOGO -->
+
+    <a th:href="@{/}" class="logo">
+
+      <img th:src="@{/images/logo.png}"
+           alt="HamroKitab Logo">
+
+    </a>
+
+
+    <!-- PAGE TITLE -->
+
+    <div class="header-title">
+
+      <h1>My Orders</h1>
+
+      <p>Track your book purchases</p>
+
+    </div>
+
+
+    <!-- BROWSE BOOKS -->
+
+    <a th:href="@{/product}" class="browse-btn">
+
+      Browse Books →
+
+    </a>
+
+  </div>
+
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="page">
+
+
+  <!-- PAGE HEADING -->
+
+  <div class="page-top">
+
+    <h2>Order History</h2>
+
+    <span class="order-count"
+          th:if="${orders != null and !#lists.isEmpty(orders)}"
+          th:text="${#lists.size(orders) + ' Orders'}">
+
+            2 Orders
+
+        </span>
+
+  </div>
+
+
+  <!-- ================= EMPTY STATE ================= -->
+
+  <div class="empty-state"
+       th:if="${orders == null or #lists.isEmpty(orders)}">
+
+    <div class="empty-icon">
+      ♡
+    </div>
+
+    <h2>No orders yet</h2>
+
+    <p>
+      You have not ordered any books yet.
+      Explore our collection and find your next book.
+    </p>
+
+    <a th:href="@{/product}" class="empty-btn">
+
+      Explore Books
+
+    </a>
+
+  </div>
+
+
+  <!-- ================= ORDER LIST ================= -->
+
+  <div th:if="${orders != null and !#lists.isEmpty(orders)}">
+
+
+    <!-- ORDER CARD -->
+
+    <div class="order-card"
+         th:each="order : ${orders}">
+
+
+      <!-- ORDER HEADER -->
+
+      <div class="order-top">
+
+        <div>
+
+          <div class="order-label">
+            Order Number
+          </div>
+
+          <div class="order-number"
+               th:text="'#HK-' + ${order.id}">
+
+            #HK-1001
+
+          </div>
+
+          <div class="order-date"
+               th:text="${order.orderDate != null ? #temporals.format(order.orderDate, 'dd MMM yyyy, hh:mm a') : 'Date unavailable'}">
+
+            20 Sep 2026, 08:00 PM
+
+          </div>
+
+        </div>
+
+
+        <span class="status"
+              th:text="${order.status}">
+
+                    PENDING
+
+                </span>
+
+      </div>
+
+
+      <!-- PRODUCT DETAILS -->
+
+      <div class="product-section">
+
+
+        <!-- BOOK IMAGE -->
+
+        <div class="book-image">
+
+          <img th:if="${order.book.image != null}"
+               th:src="'data:' + ${order.book.imageType} + ';base64,' + ${order.book.imageBase64}"
+               alt="Book Image">
+
+          <span th:if="${order.book.image == null}">
+
+                        No Image
+
+                    </span>
+
+        </div>
+
+
+        <!-- BOOK INFORMATION -->
+
+        <div class="product-details">
+
+          <h2 th:text="${order.book.title}">
+
+            Book Title
+
+          </h2>
+
+          <p class="author"
+             th:text="'By ' + ${order.book.author}">
+
+            By Author Name
+
+          </p>
+
+
+          <div class="book-meta">
+
+
+                        <span class="meta-tag"
+                              th:if="${order.book.condition != null}"
+                              th:text="${order.book.condition}">
+
+                            Good Condition
+
+                        </span>
+
+
+            <span class="meta-tag"
+                  th:if="${order.book.category != null}"
+                  th:text="${order.book.category}">
+
+                            Category
+
+                        </span>
+
+
+            <span class="meta-tag"
+                  th:if="${order.book.semester != null}"
+                  th:text="'Semester ' + ${order.book.semester}">
+
+                            Semester
+
+                        </span>
+
+
+          </div>
+
+
+          <div class="product-price">
+
+            Rs.
+
+            <span th:text="${order.price}">
+
+                            500
+
+                        </span>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- ORDER INFORMATION -->
+
+      <div class="information-section">
+
+        <h3 class="section-title">
+
+          Order Information
+
+        </h3>
+
+
+        <div class="information-grid">
+
+
+          <!-- SELLER -->
+
+          <div class="information-item">
+
+            <label>Seller</label>
+
+            <p th:text="${order.seller.username}">
+
+              Seller Name
+
+            </p>
+
+          </div>
+
+
+          <!-- SELLER EMAIL -->
+
+          <div class="information-item">
+
+            <label>Seller Email</label>
+
+            <p th:text="${order.seller.email}">
+
+              seller@email.com
+
+            </p>
+
+          </div>
+
+
+          <!-- RECEIVER NAME -->
+
+          <div class="information-item">
+
+            <label>Receiver Name</label>
+
+            <p th:text="${order.buyerName}">
+
+              Buyer Name
+
+            </p>
+
+          </div>
+
+
+          <!-- PHONE NUMBER -->
+
+          <div class="information-item">
+
+            <label>Phone Number</label>
+
+            <p th:text="${order.phoneNumber}">
+
+              98XXXXXXXX
+
+            </p>
+
+          </div>
+
+
+          <!-- PROVINCE -->
+
+          <div class="information-item">
+
+            <label>Province</label>
+
+            <p th:text="${order.province}">
+
+              Bagmati
+
+            </p>
+
+          </div>
+
+
+          <!-- CITY -->
+
+          <div class="information-item">
+
+            <label>City / Municipality</label>
+
+            <p th:text="${order.city}">
+
+              Kathmandu
+
+            </p>
+
+          </div>
+
+
+          <!-- DELIVERY ADDRESS -->
+
+          <div class="information-item full-width">
+
+            <label>Delivery Address</label>
+
+            <p th:text="${order.deliveryAddress}">
+
+              Complete delivery address
+
+            </p>
+
+          </div>
+
+
+          <!-- DELIVERY NOTE -->
+
+          <div class="information-item full-width"
+               th:if="${order.deliveryNote != null and !#strings.isEmpty(order.deliveryNote)}">
+
+            <label>Additional Delivery Note</label>
+
+            <p th:text="${order.deliveryNote}">
+
+              Additional note
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+
+      <!-- ORDER FOOTER -->
+
+      <div class="order-footer">
+
+
+        <!-- TOTAL PRICE -->
+
+        <div>
+
+          <div class="total-label">
+
+            Total Amount
+
+          </div>
+
+          <div class="total-price">
+
+            Rs.
+
+            <span th:text="${order.price}">
+
+                            500
+
+                        </span>
+
+          </div>
+
+        </div>
+
+
+        <!-- CANCEL BUTTON -->
+
+        <form th:if="${order.status == 'PENDING'}"
+              th:action="@{/order/cancel/{id}(id=${order.id})}"
+              method="post">
+
+          <button type="submit"
+                  class="cancel-btn">
+
+            Cancel Order
+
+          </button>
+
+        </form>
+
+
+        <!-- STATUS MESSAGE -->
+
+        <span class="status-message"
+              th:if="${order.status != 'PENDING'}"
+              th:text="${order.status == 'CANCELLED' ? 'This order has been cancelled' : 'Order is being processed'}">
+
+                    Order is being processed
+
+                </span>
+
+
+      </div>
+
+
+    </div>
+
+  </div>
+
+</main>
+
+</body>
+
+</html>

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EduBazar - Seller Center</title>
+
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" href="css/seller.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/fontawesome-free-6.7.2-web/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/menuresponsive.css">
+</head>
+
+<body>
+
+<!-- Header -->
+
+<!-- <header class="navbar">
+  <div class="nav-container">
+
+
+<div class="logo">
+  <img th:src="@{/images/logo.png}" alt="EduBazar Logo" class="logo-img">
+</div>
+
+<nav class="nav-menu">
+  <ul>
+    <li><a href="landingold.html">Home</a></li>
+    <li><a href="product.html">Product</a></li>
+    <li><a href="category.html">Categories</a></li>
+    <li><a href="about.html">About us</a></li>
+    <li><a href="seller.html">Become a seller</a></li>
+  </ul>
+</nav>
+
+<div class="nav-search">
+  <input type="text" placeholder="Search books...">
+  <button type="button">
+    <i class="fas fa-search"></i>
+  </button>
+</div>
+
+<div class="nav-right">
+
+  <div class="nav-cart">
+    <a href="cart.html">
+      <i class="fa-solid fa-cart-shopping"></i>
+    </a>
+  </div>
+
+  <div class="user-menu">
+    <i class="fa-solid fa-user" id="user-icon"></i>
+
+    <div class="dropdown-menu" id="dropdown">
+      <a href="esign.html">Sign Up / Log In</a>
+      <a href="#">My Profile</a>
+      <a href="#">Orders</a>
+      <a href="#">Wishlist</a>
+      <a href="#">Logout</a>
+    </div>
+  </div>
+
+  <div class="nav-icon">
+    <i class="fa-solid fa-bars"></i>
+  </div>
+
+</div>
+</div>
+
+
+</header> -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <title>HamroKitab - Second-hand Books</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="assets/fontawesome-free-6.7.2-web/css/all.min.css">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/landingold.css">
+    <link rel="stylesheet" href="assets/css/footer.css">
+</head>
+
+
+<body>
+
+<!-- =========================
+     HEADER / NAVBAR
+========================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a href="landingold.html">
+                <img
+                        th:src="@{/images/logo.png}"
+                        alt="HamroKitab Logo"
+                        class="logo-img"
+                >
+            </a>
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+
+            <ul>
+
+                <li>
+                    <a th:href="@{/}">Home</a>
+
+                </li>
+
+                <li>
+                    <a th:href="@{/product}">Products</a>
+                </li>
+
+                <li>
+                    <a th:href="@{/category}">Category</a>
+                </li>
+
+                <li>
+                    <a th:href="@{/about}">About Us</a>
+                </li>
+
+                <li>
+                    <a th:href="@{/seller}">Become a seller</a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+
+        <!-- Search -->
+        <div class="nav-search">
+
+            <input
+                    type="text"
+                    placeholder="Search books..."
+                    aria-label="Search books"
+            >
+
+            <button type="button" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </div>
+
+
+        <!-- Right Navigation -->
+        <div class="nav-right">
+
+            <!-- Cart -->
+            <div class="nav-cart">
+
+                <a href="cart.html" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+
+            </div>
+
+
+            <!-- User -->
+            <div class="user-menu">
+
+                <i
+                        class="fa-solid fa-user"
+                        id="user-icon"
+                        aria-label="User menu"
+                        role="button"
+                        tabindex="0"
+                ></i>
+
+
+                <!-- User Dropdown -->
+                <div class="dropdown-menu" id="dropdown">
+
+                    <a href="esign.html">
+                        Log In
+                    </a>
+
+                    <a href="#">
+                        My Profile
+                    </a>
+
+                    <a href="#">
+                        Orders
+                    </a>
+
+                    <a href="wishlist.html">
+                        Wishlist
+                    </a>
+
+                    <a href="#">
+                        Logout
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- Mobile Menu -->
+            <div
+                    class="nav-icon"
+                    id="menu-icon"
+                    aria-label="Open navigation menu"
+                    role="button"
+                    tabindex="0"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+<!-- Main Section -->
+
+<section class="main-container">
+
+
+    <div class="left-content">
+        <h1>Become an EduBazar Seller<br>Today!</h1>
+        <p>
+            Create a seller account and reach thousands of book lovers in Nepal.
+        </p>
+    </div>
+
+    <div class="login-box">
+        <h2>Login with Password</h2>
+
+        <input type="text" placeholder="Mobile Number / Email">
+        <input type="password" placeholder="Password">
+
+        <a href="list.html">
+            <button type="button" class="login-btn">Login</button>
+        </a>
+
+        <div class="login-links">
+            <a href="#">Reset password</a>
+            <span>|</span>
+            <a href="sellersign.html">Create a new account</a>
+        </div>
+    </div>
+
+
+</section>
+
+<!-- Why Sell Section -->
+
+<section class="why-sell">
+
+
+    <h2>Why Sell on EduBazar?</h2>
+
+    <div class="features-container">
+
+        <div class="reason-card">
+            <i class="fa-solid fa-users"></i>
+            <h3>Reach</h3>
+            <p>Thousands of students and readers visit EduBazar daily.</p>
+        </div>
+
+        <div class="reason-card">
+            <i class="fa-solid fa-pen-nib"></i>
+            <h3>Free Registration</h3>
+            <p>No listing or setup fees.</p>
+        </div>
+
+        <div class="reason-card">
+            <i class="fa-solid fa-truck"></i>
+            <h3>Reliable Delivery</h3>
+            <p>We help you get books delivered fast and safely.</p>
+        </div>
+
+        <div class="reason-card">
+            <i class="fa-solid fa-money-bill-transfer"></i>
+            <h3>Timely Payments</h3>
+            <p>Get paid weekly directly to your bank account.</p>
+        </div>
+
+        <div class="reason-card">
+            <i class="fa-solid fa-bullhorn"></i>
+            <h3>Marketing Tools</h3>
+            <p>Grow faster with our promotion support.</p>
+        </div>
+
+        <div class="reason-card">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <h3>Support & Training</h3>
+            <p>Get help and free e-commerce training.</p>
+        </div>
+
+    </div>
+
+
+</section>
+
+<!-- Start Selling Section -->
+
+<section class="start-selling">
+
+
+    <h2>5 Simple Steps to Start Selling</h2>
+
+    <div class="steps">
+
+        <div class="step">
+            <img th:src="@{/images/add-user.png}" alt="Signup">
+            <h3>Signup for Free</h3>
+            <p>
+                Create your account through our website or mobile app with just your phone number.
+            </p>
+        </div>
+
+        <div class="step">
+            <img th:src="@{/images/user.png}" alt="Profile Information">
+            <h3>Add Profile Information</h3>
+            <p>
+                Complete your profile by providing your email and store name so that we can identify you.
+            </p>
+        </div>
+
+        <div class="step">
+            <img th:src="@{/images/location-pin.png}" alt="Address Information">
+            <h3>Add Address Information</h3>
+            <p>
+                Provide all address details of your business.
+            </p>
+        </div>
+
+        <div class="step">
+            <img th:src="@{/images/credit-card.png}" alt="Bank Information">
+            <h3>Add ID & Bank Information</h3>
+            <p>
+                Add your ID and business-related details. Include necessary bank information for payments.
+            </p>
+        </div>
+
+        <div class="step">
+            <img th:src="@{/images/list product.png}" alt="List Products">
+            <h3>List Products</h3>
+            <p>
+                Add products to your store through Seller Center. Start selling once your products go live after quality control.
+            </p>
+        </div>
+
+    </div>
+
+
+</section>
+
+<!-- CTA Section -->
+
+<section class="cta-section">
+
+
+    <div class="cta-content">
+        <h2>What are you waiting for? Start selling with EduBazar today.</h2>
+        <a href="#get-started" class="cta-button">GET STARTED</a>
+    </div>
+
+
+</section>
+
+</body>
+
+</html>

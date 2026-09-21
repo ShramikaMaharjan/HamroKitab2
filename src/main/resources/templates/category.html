@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Categories | HamroKitab</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet"
+          th:href="@{/css/header.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/category.css}">
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="logo">
+
+            <a th:href="@{/}">
+
+                <img th:src="@{/images/logo.png}"
+                     alt="HamroKitab Logo"
+                     class="logo-img">
+
+            </a>
+
+        </div>
+
+
+        <nav class="nav-menu">
+
+            <ul>
+
+                <li>
+                    <a th:href="@{/}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/product}">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/category}"
+                       class="active">
+                        Category
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/about}">
+                        About Us
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/addBook}">
+                        Sell a Book
+                    </a>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <div class="nav-right">
+
+            <div class="nav-cart">
+
+                <a th:href="@{/cart}"
+                   aria-label="Shopping cart">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- LOGGED-IN USER -->
+
+            <div class="user-menu"
+                 th:if="${session.loggedInUser != null}">
+
+                <i class="fa-solid fa-user"
+                   id="user-icon"
+                   role="button"
+                   tabindex="0">
+                </i>
+
+                <div class="dropdown-menu"
+                     id="dropdown">
+
+                    <p class="welcome-user">
+
+                        Hello,
+
+                        <span th:text="${session.loggedInUser.username}">
+                            User
+                        </span>
+
+                    </p>
+
+                    <a th:href="@{/profile}">
+                        <i class="fa-solid fa-id-card"></i>
+                        My Profile
+                    </a>
+
+                    <a th:href="@{/myOrders}">
+                        <i class="fa-solid fa-box"></i>
+                        My Orders
+                    </a>
+
+                    <a th:href="@{/sellerorders}">
+                        <i class="fa-solid fa-truck"></i>
+                        Seller Orders
+                    </a>
+
+                    <a th:href="@{/myListings}">
+                        <i class="fa-solid fa-book-open"></i>
+                        My Listings
+                    </a>
+
+                    <a th:href="@{/messages}">
+                        <i class="fa-solid fa-inbox"></i>
+                        Inbox
+                    </a>
+
+                    <a th:href="@{/sentMessages}">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Sent Messages
+                    </a>
+
+                    <a th:href="@{/wishlist}">
+                        <i class="fa-solid fa-heart"></i>
+                        Wishlist
+                    </a>
+
+                    <a th:href="@{/logoutUser}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+
+                </div>
+
+            </div>
+
+
+            <!-- LOGGED-OUT USER -->
+
+            <div class="auth-links"
+                 th:if="${session.loggedInUser == null}">
+
+                <a th:href="@{/register}">
+                    Create Account
+                </a>
+
+                <a th:href="@{/login}">
+                    Log In
+                </a>
+
+            </div>
+
+
+            <div class="nav-icon"
+                 id="menu-icon"
+                 role="button"
+                 tabindex="0">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     CATEGORY PAGE
+========================= -->
+
+<main class="category-page">
+
+
+    <!-- PAGE HEADING -->
+
+    
+
+
+    <div class="category-layout">
+
+
+        <!-- =========================
+             LEFT FILTER SIDEBAR
+        ========================= -->
+
+        <aside class="filter-sidebar">
+
+
+            <div class="filter-header">
+
+                <h3>
+                    Filter
+                </h3>
+
+                <a th:href="@{/category}">
+                    Clear All
+                </a>
+
+            </div>
+
+
+            <!-- SEARCH -->
+
+            <form th:action="@{/category}"
+                  method="get"
+                  class="search-form">
+
+                <label for="title">
+                    Filter by Search
+                </label>
+
+                <div class="search-box">
+
+                    <input type="text"
+                           id="title"
+                           name="title"
+                           th:value="${searchTitle}"
+                           placeholder="Search products...">
+
+                    <button type="submit">
+
+                        <i class="fa-solid fa-magnifying-glass"></i>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+
+            <!-- CATEGORIES -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Categories
+                </h4>
+
+
+                <a th:href="@{/category(category='BBS')}">
+                    BBS
+                </a>
+
+                <a th:href="@{/category(category='Science')}">
+                    Science
+                </a>
+
+                <a th:href="@{/category(category='Management')}">
+                    Management
+                </a>
+
+                <a th:href="@{/category(category='Entrance Preparation')}">
+                    Entrance Preparation
+                </a>
+
+                <a th:href="@{/category(category='Fiction')}">
+                    Fiction
+                </a>
+
+                <a th:href="@{/category(category='Novels')}">
+                    Novels
+                </a>
+
+                <a th:href="@{/category(category='Manga')}">
+                    Manga
+                </a>
+
+                <a th:href="@{/category(category='Engineering')}">
+                    Engineering
+                </a>
+
+                <a th:href="@{/category(category='Medical & Health')}">
+                    Medical & Health
+                </a>
+
+                <a th:href="@{/category(category='Computer Science & IT')}">
+                    Computer Science & IT
+                </a>
+
+            </div>
+
+
+            <!-- CONDITION -->
+
+            <div class="filter-section">
+
+                <h4>
+                    Book Condition
+                </h4>
+
+                <a th:href="@{/category(condition='New')}">
+                    <span class="checkbox"></span>
+                    New
+                </a>
+
+                <a th:href="@{/category(condition='Like New')}">
+                    <span class="checkbox"></span>
+                    Like New
+                </a>
+
+                <a th:href="@{/category(condition='Used')}">
+                    <span class="checkbox"></span>
+                    Used
+                </a>
+
+                <a th:href="@{/category(condition='Heavily Used')}">
+                    <span class="checkbox"></span>
+                    Heavily Used
+                </a>
+
+            </div>
+
+
+            <!-- SIDEBAR BANNER -->
+
+            <div class="sidebar-banner">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <h4>
+                    Have books to sell?
+                </h4>
+
+                <p>
+                    Give your old books a new home.
+                </p>
+
+                <a th:href="@{/addBook}">
+                    Sell a Book
+                </a>
+
+            </div>
+
+
+        </aside>
+
+
+        <!-- =========================
+             RIGHT PRODUCT SECTION
+        ========================= -->
+
+        <section class="products-section">
+
+
+            <div class="products-heading">
+
+                <div>
+
+                    <h2>
+                        Book Collection
+                    </h2>
+
+                    <p>
+                        Find your next favourite book.
+                    </p>
+
+                </div>
+
+                <span class="book-count"
+                      th:text="${#lists.size(books)} + ' Books'">
+
+                    0 Books
+
+                </span>
+
+            </div>
+
+
+            <!-- BOOK GRID -->
+
+            <div class="book-grid">
+
+
+                <div class="book-card"
+                     th:each="book : ${books}">
+
+
+                    <!-- IMAGE -->
+
+                    <div class="book-image">
+
+                        <span class="condition-badge"
+                              th:text="${book.condition}">
+
+                            Like New
+
+                        </span>
+
+
+                        <a th:href="@{/bookdetail/{id}(id=${book.id})}">
+
+                            <img th:if="${book.image != null}"
+                                 th:src="'data:' + ${book.imageType} + ';base64,' + ${book.imageBase64}"
+                                 th:alt="${book.title}">
+
+                            <div th:if="${book.image == null}"
+                                 class="no-image">
+
+                                <i class="fa-solid fa-book"></i>
+
+                                <span>
+                                    No Image
+                                </span>
+
+                            </div>
+
+                        </a>
+
+                    </div>
+
+
+                    <!-- BOOK DETAILS -->
+
+                    <div class="book-details">
+
+                        <p class="book-category"
+                           th:text="${book.category}">
+
+                            Science
+
+                        </p>
+
+
+                        <h3>
+
+                            <a th:href="@{/bookdetail/{id}(id=${book.id})}"
+                               th:text="${book.title}">
+
+                                Book Title
+
+                            </a>
+
+                        </h3>
+
+
+                        <p class="book-author"
+                           th:text="${book.author}">
+
+                            Author Name
+
+                        </p>
+
+
+                        <div class="book-rating">
+
+                            <span>★★★★★</span>
+
+                        </div>
+
+
+                        <strong class="book-price"
+                                th:text="'NPR ' + ${book.price}">
+
+                            NPR 650
+
+                        </strong>
+
+
+                        <form th:action="@{/cart/add/{id}(id=${book.id})}"
+                              method="post">
+
+                            <button type="submit"
+                                    class="add-cart-button">
+
+                                <i class="fa-solid fa-cart-shopping"></i>
+
+                                Add to Cart
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+
+            </div>
+
+
+            <!-- EMPTY BOOKS -->
+
+            <div class="empty-books"
+                 th:if="${#lists.isEmpty(books)}">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                <h3>
+                    No books found
+                </h3>
+
+                <p>
+                    Try selecting another category or searching again.
+                </p>
+
+                <a th:href="@{/category}">
+                    View All Books
+                </a>
+
+            </div>
+
+
+        </section>
+
+    </div>
+
+</main>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    document.addEventListener("DOMContentLoaded", function () {
+
+        const userIcon =
+            document.getElementById("user-icon");
+
+        const dropdown =
+            document.getElementById("dropdown");
+
+        if (userIcon && dropdown) {
+
+            userIcon.addEventListener("click", function (event) {
+
+                event.stopPropagation();
+
+                dropdown.classList.toggle("show");
+
+            });
+
+            document.addEventListener("click", function (event) {
+
+                if (
+                    !userIcon.contains(event.target) &&
+                    !dropdown.contains(event.target)
+                ) {
+
+                    dropdown.classList.remove("show");
+
+                }
+
+            });
+
+        }
+
+
+        const menuIcon =
+            document.getElementById("menu-icon");
+
+        const menu =
+            document.querySelector(".nav-menu");
+
+        if (menuIcon && menu) {
+
+            menuIcon.addEventListener("click", function () {
+
+                menu.classList.toggle("active");
+
+            });
+
+        }
+
+    });
+
+</script>
+
+</body>
+
+</html>

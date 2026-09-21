@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>About Us | HamroKitab</title>
+
+    <!-- Existing CSS -->
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+          rel="stylesheet">
+
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", Arial, sans-serif;
+            background: #fbfaf8;
+            color: #252545;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        img {
+            display: block;
+            max-width: 100%;
+        }
+
+
+        /* ==================================================
+           ABOUT PAGE
+        ================================================== */
+
+        .about-page {
+            overflow: hidden;
+        }
+
+
+        /* ==================================================
+           HERO
+        ================================================== */
+
+        .about-hero {
+            max-width: 1250px;
+            margin: 0 auto;
+
+            min-height: 610px;
+
+            padding: 75px 30px 85px;
+
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            align-items: center;
+
+            gap: 70px;
+        }
+
+
+        .about-hero-content {
+            max-width: 600px;
+        }
+
+
+        .about-label {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            color: #363795;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+
+            margin-bottom: 18px;
+        }
+
+
+        .about-label i {
+            font-size: 14px;
+        }
+
+
+        .about-hero h1 {
+            font-family: "DM Sans", Arial, sans-serif;
+            font-size: clamp(46px, 6vw, 72px);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -2.5px;
+            color: #252545;
+            margin-bottom: 25px;
+        }
+
+
+        .about-hero h1 span {
+            color: #363795;
+        }
+
+
+        .about-hero-text {
+            max-width: 530px;
+
+            color: #68687b;
+
+            font-size: 16px;
+
+            line-height: 1.9;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* ==================================================
+           HERO BUTTONS
+        ================================================== */
+
+        .about-hero-buttons {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+
+        .about-primary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+
+            padding: 13px 20px;
+
+            background: #363795;
+            color: #ffffff;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .about-primary-btn:hover {
+            background: #252545;
+            transform: translateY(-2px);
+        }
+
+
+        .about-secondary-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+
+            padding: 13px 19px;
+
+            background: #ffffff;
+            color: #363795;
+
+            border: 1px solid #ddddec;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+            font-weight: 700;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .about-secondary-btn:hover {
+            border-color: #363795;
+            transform: translateY(-2px);
+        }
+
+
+        /* ==================================================
+           HERO IMAGE
+        ================================================== */
+
+        .about-hero-image {
+            position: relative;
+
+            height: 500px;
+        }
+
+
+        .about-hero-image::before {
+            content: "";
+
+            position: absolute;
+
+            width: 230px;
+            height: 230px;
+
+            right: -60px;
+            top: -45px;
+
+            border-radius: 50%;
+
+            background: #eeeefb;
+        }
+
+
+        .about-hero-image::after {
+            content: "";
+
+            position: absolute;
+
+            width: 150px;
+            height: 150px;
+
+            left: -45px;
+            bottom: -30px;
+
+            border-radius: 50%;
+
+            background: #f0f0fc;
+        }
+
+
+        .about-hero-image img {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 28px;
+
+            box-shadow:
+                    0 25px 60px rgba(37, 37, 69, 0.13);
+        }
+
+
+        /* ==================================================
+           SMALL STAT CARD
+        ================================================== */
+
+        .about-stat-card {
+            position: absolute;
+
+            z-index: 3;
+
+            left: -28px;
+            bottom: 35px;
+
+            width: 190px;
+
+            padding: 19px;
+
+            background: #ffffff;
+
+            border: 1px solid #e7e6ed;
+
+            border-radius: 17px;
+
+            box-shadow: 0 15px 35px rgba(37, 37, 69, 0.10);
+        }
+
+
+        .about-stat-icon {
+            width: 38px;
+            height: 38px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            border-radius: 10px;
+
+            background: #eeeefb;
+            color: #363795;
+
+            margin-bottom: 12px;
+        }
+
+
+        .about-stat-card strong {
+            display: block;
+
+            font-size: 14px;
+
+            color: #252545;
+
+            margin-bottom: 3px;
+        }
+
+
+        .about-stat-card span {
+            display: block;
+
+            color: #858595;
+
+            font-size: 11px;
+        }
+
+
+        /* ==================================================
+           DIVIDER
+        ================================================== */
+
+        .about-divider {
+            max-width: 1190px;
+
+            height: 1px;
+
+            background: #e6e5eb;
+
+            margin: 0 auto;
+        }
+
+
+        /* ==================================================
+           WHO WE ARE
+        ================================================== */
+
+        .about-story {
+            max-width: 1190px;
+
+            margin: 0 auto;
+
+            padding: 100px 30px;
+
+            display: grid;
+
+            grid-template-columns: 0.9fr 1.1fr;
+
+            gap: 90px;
+
+            align-items: center;
+        }
+
+
+        .about-story-image {
+            position: relative;
+
+            height: 450px;
+        }
+
+
+        .about-story-image img {
+            width: 100%;
+            height: 100%;
+
+            object-fit: cover;
+
+            border-radius: 24px;
+        }
+
+
+        .about-story-image-tag {
+            position: absolute;
+
+            left: 22px;
+            bottom: 22px;
+
+            padding: 10px 14px;
+
+            background: #ffffff;
+
+            border-radius: 10px;
+
+            color: #363795;
+
+            font-size: 11px;
+            font-weight: 700;
+
+            box-shadow: 0 8px 25px rgba(37, 37, 69, 0.12);
+        }
+
+
+        .about-section-label {
+            color: #363795;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1.5px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 14px;
+        }
+
+
+        .about-story h2 {
+            font-family: "DM Sans", Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            font-size: clamp(34px, 4vw, 48px);
+            line-height: 1.12;
+            color: #252545;
+            margin-bottom: 23px;
+        }
+
+
+        .about-story h2 span {
+            color: #363795;
+        }
+
+
+        .about-story p {
+            color: #6d6d7d;
+
+            font-size: 15px;
+
+            line-height: 1.9;
+
+            margin-bottom: 17px;
+        }
+
+
+        /* ==================================================
+           MISSION
+        ================================================== */
+
+        .about-mission {
+            background: #252545;
+
+            padding: 95px 30px;
+        }
+
+
+        .about-mission-inner {
+            max-width: 900px;
+
+            margin: 0 auto;
+
+            text-align: center;
+        }
+
+
+        .about-mission-label {
+            color: #aaaade;
+
+            font-size: 12px;
+            font-weight: 700;
+
+            letter-spacing: 1.6px;
+
+            text-transform: uppercase;
+
+            margin-bottom: 16px;
+        }
+
+
+        .about-mission h2 {
+            font-family: "DM Sans", Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #ffffff;
+            font-size: clamp(35px, 5vw, 53px);
+            line-height: 1.15;
+            margin-bottom: 23px;
+        }
+
+
+        .about-mission h2 span {
+            color: #aaaade;
+        }
+
+
+        .about-mission p {
+            max-width: 700px;
+
+            margin: 0 auto;
+
+            color: rgba(255, 255, 255, 0.68);
+
+            font-size: 15px;
+
+            line-height: 1.9;
+        }
+
+
+        /* ==================================================
+           VALUES
+        ================================================== */
+
+        .about-values {
+            max-width: 1190px;
+
+            margin: 0 auto;
+
+            padding: 100px 30px;
+        }
+
+
+        .about-values-heading {
+            display: flex;
+
+            justify-content: space-between;
+
+            align-items: flex-end;
+
+            gap: 30px;
+
+            margin-bottom: 38px;
+        }
+
+
+        .about-values-heading h2 {
+            font-family: "DM Sans", Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            font-size: 42px;
+            color: #252545;
+        }
+
+
+        .about-values-heading p {
+            max-width: 430px;
+
+            color: #777788;
+
+            font-size: 14px;
+
+            line-height: 1.7;
+        }
+
+
+        .about-values-grid {
+            display: grid;
+
+            grid-template-columns: repeat(3, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .about-value-card {
+            padding: 30px;
+
+            background: #ffffff;
+
+            border: 1px solid #e7e6ed;
+
+            border-radius: 20px;
+
+            transition: all 0.25s ease;
+        }
+
+
+        .about-value-card:hover {
+            transform: translateY(-5px);
+
+            border-color: #d1d1ef;
+
+            box-shadow: 0 15px 35px rgba(37, 37, 69, 0.08);
+        }
+
+
+        .about-value-icon {
+            width: 48px;
+            height: 48px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            background: #eeeefb;
+
+            color: #363795;
+
+            border-radius: 13px;
+
+            margin-bottom: 22px;
+
+            font-size: 18px;
+        }
+
+
+        .about-value-card h3 {
+            color: #252545;
+
+            font-size: 17px;
+
+            margin-bottom: 9px;
+        }
+
+
+        .about-value-card p {
+            color: #777788;
+
+            font-size: 13px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ==================================================
+           SIMPLE FLOW
+        ================================================== */
+
+        .about-flow {
+            background: #f0f0fc;
+
+            padding: 90px 30px;
+        }
+
+
+        .about-flow-inner {
+            max-width: 1190px;
+
+            margin: 0 auto;
+        }
+
+
+        .about-flow-heading {
+            text-align: center;
+
+            margin-bottom: 45px;
+        }
+
+
+        .about-flow-heading .about-section-label {
+            margin-bottom: 10px;
+        }
+
+
+        .about-flow-heading h2 {
+            font-family: "DM Sans", Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            font-size: 40px;
+            color: #252545;
+        }
+
+
+        .about-flow-grid {
+            display: grid;
+
+            grid-template-columns: repeat(4, 1fr);
+
+            gap: 18px;
+        }
+
+
+        .about-flow-card {
+            position: relative;
+
+            padding: 27px 23px;
+
+            background: #ffffff;
+
+            border-radius: 18px;
+
+            border: 1px solid #e4e3ec;
+        }
+
+
+        .about-flow-number {
+            display: block;
+
+            color: #aaaacb;
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            margin-bottom: 20px;
+        }
+
+
+        .about-flow-card i {
+            color: #363795;
+
+            font-size: 20px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .about-flow-card h3 {
+            color: #252545;
+
+            font-size: 16px;
+
+            margin-bottom: 7px;
+        }
+
+
+        .about-flow-card p {
+            color: #777788;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+        }
+
+
+        /* ==================================================
+           CTA
+        ================================================== */
+
+        .about-cta {
+            max-width: 1190px;
+
+            margin: 0 auto;
+
+            padding: 90px 30px;
+        }
+
+
+        .about-cta-box {
+            position: relative;
+
+            overflow: hidden;
+
+            padding: 55px 60px;
+
+            border-radius: 25px;
+
+            background: #363795;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 30px;
+        }
+
+
+        .about-cta-box::after {
+            content: "";
+
+            position: absolute;
+
+            width: 260px;
+            height: 260px;
+
+            right: -90px;
+            top: -100px;
+
+            border-radius: 50%;
+
+            background: rgba(255, 255, 255, 0.07);
+        }
+
+
+        .about-cta-content {
+            position: relative;
+
+            z-index: 2;
+        }
+
+
+        .about-cta-content h2 {
+            font-family: "DM Sans", Arial, sans-serif;
+            font-weight: 700;
+            letter-spacing: -1.5px;
+            color: #ffffff;
+            font-size: 35px;
+            line-height: 1.2;
+            margin-bottom: 8px;
+        }
+
+
+        .about-cta-content p {
+            color: rgba(255, 255, 255, 0.70);
+
+            font-size: 14px;
+        }
+
+
+        .about-cta-button {
+            position: relative;
+
+            z-index: 2;
+
+            display: inline-flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            padding: 13px 20px;
+
+            background: #ffffff;
+
+            color: #252545;
+
+            border-radius: 11px;
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            white-space: nowrap;
+
+            transition: transform 0.2s ease;
+        }
+
+
+        .about-cta-button:hover {
+            transform: translateY(-2px);
+        }
+
+
+        /* ==================================================
+           RESPONSIVE
+        ================================================== */
+
+        @media (max-width: 950px) {
+
+            .about-hero {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+
+                padding-top: 60px;
+            }
+
+            .about-hero-content {
+                max-width: 700px;
+            }
+
+            .about-hero-image {
+                height: 430px;
+            }
+
+            .about-story {
+                grid-template-columns: 1fr;
+
+                gap: 50px;
+            }
+
+            .about-story-image {
+                height: 400px;
+            }
+
+            .about-values-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about-flow-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .about-hero {
+                padding: 45px 20px 65px;
+
+                min-height: auto;
+            }
+
+            .about-hero h1 {
+                font-size: 46px;
+            }
+
+            .about-hero-text {
+                font-size: 14px;
+            }
+
+            .about-hero-image {
+                height: 350px;
+            }
+
+            .about-stat-card {
+                left: 15px;
+                bottom: 18px;
+            }
+
+            .about-story {
+                padding: 70px 20px;
+            }
+
+            .about-story-image {
+                height: 330px;
+            }
+
+            .about-mission {
+                padding: 70px 20px;
+            }
+
+            .about-values {
+                padding: 70px 20px;
+            }
+
+            .about-values-heading {
+                display: block;
+            }
+
+            .about-values-heading h2 {
+                font-size: 35px;
+                margin-bottom: 12px;
+            }
+
+            .about-values-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-flow {
+                padding: 70px 20px;
+            }
+
+            .about-flow-heading h2 {
+                font-size: 34px;
+            }
+
+            .about-flow-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .about-cta {
+                padding: 65px 20px;
+            }
+
+            .about-cta-box {
+                display: block;
+
+                padding: 38px 28px;
+            }
+
+            .about-cta-content h2 {
+                font-size: 30px;
+            }
+
+            .about-cta-button {
+                margin-top: 22px;
+            }
+
+        }
+
+
+        @media (max-width: 430px) {
+
+            .about-hero h1 {
+                font-size: 39px;
+            }
+
+            .about-hero-image {
+                height: 290px;
+            }
+
+            .about-stat-card {
+                width: 165px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<!-- ==================================================
+     HEADER
+================================================== -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+
+        <!-- Logo -->
+
+        <div class="logo">
+
+            <a th:href="@{/}">
+
+                <img
+                        th:src="@{/images/logo.png}"
+                        alt="HamroKitab Logo"
+                        class="logo-img"
+                >
+
+            </a>
+
+        </div>
+
+
+        <!-- Navigation -->
+
+        <nav class="nav-menu">
+
+            <ul>
+
+                <li>
+                    <a th:href="@{/}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/product}">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/category}">
+                        Category
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/about}" class="active">
+                        About Us
+                    </a>
+                </li>
+
+                <li>
+                <li>
+                    <a th:href="@{/addBook}">
+                        Sell a Book
+                    </a>
+                </li>
+                </li>
+
+            </ul>
+
+        </nav>
+
+
+        <!-- Right Navigation -->
+
+        <div class="nav-right">
+
+
+            <!-- Cart -->
+
+            <div class="nav-cart">
+
+                <a th:href="@{/cart}"
+                   aria-label="Shopping cart">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                </a>
+
+            </div>
+
+
+            <!-- User -->
+
+            <div class="user-menu"
+                 th:if="${session.loggedInUser != null}">
+
+
+                <i
+                        class="fa-solid fa-user"
+                        id="user-icon"
+                        aria-label="User menu"
+                        role="button"
+                        tabindex="0">
+                </i>
+
+
+                <div class="dropdown-menu"
+                     id="dropdown">
+
+
+                    <p class="welcome-user">
+
+                        Hello,
+
+                        <span th:text="${session.loggedInUser.username}">
+                        </span>
+
+                    </p>
+
+
+                    <a th:href="@{/profile}">
+                        <i class="fa-solid fa-id-card"></i>
+                        My Profile
+                    </a>
+
+
+                    <a th:href="@{/myOrders}">
+                        <i class="fa-solid fa-box"></i>
+                        My Orders
+                    </a>
+
+
+                    <a th:href="@{/sellerOrders}">
+                        <i class="fa-solid fa-truck"></i>
+                        Seller Orders
+                    </a>
+
+
+                    <a th:href="@{/myListings}">
+                        <i class="fa-solid fa-book-open"></i>
+                        My Listings
+                    </a>
+
+
+                    <a th:href="@{/messages}">
+                        <i class="fa-solid fa-inbox"></i>
+                        Inbox
+                    </a>
+
+
+                    <a th:href="@{/sentMessages}">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Sent Messages
+                    </a>
+
+
+                    <a th:href="@{/wishlist}">
+                        <i class="fa-solid fa-heart"></i>
+                        Wishlist
+                    </a>
+
+
+                    <a th:href="@{/logoutUser}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+
+
+                </div>
+
+            </div>
+
+
+            <!-- Logged Out -->
+
+            <div class="auth-links"
+                 th:if="${session.loggedInUser == null}">
+
+                <a th:href="@{/register}">
+                    Create Account
+                </a>
+
+                <a th:href="@{/login}">
+                    Log In
+                </a>
+
+            </div>
+
+
+            <!-- Mobile Menu -->
+
+            <div
+                    class="nav-icon"
+                    id="menu-icon"
+                    aria-label="Open navigation menu"
+                    role="button"
+                    tabindex="0">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+</header>
+
+
+
+<!-- ==================================================
+     ABOUT PAGE
+================================================== -->
+
+<main class="about-page">
+
+
+    <!-- ==================================================
+         HERO
+    ================================================== -->
+
+    <section class="about-hero">
+
+
+        <div class="about-hero-content">
+
+
+            <span class="about-label">
+
+                <i class="fa-solid fa-book-open"></i>
+
+                About HamroKitab
+
+            </span>
+
+
+            <h1>
+
+                Every book deserves
+                <span>another chapter.</span>
+
+            </h1>
+
+
+            <p class="about-hero-text">
+
+                HamroKitab is a student-focused platform for buying
+                and selling second-hand academic books. We make it
+                easier to find affordable study materials while
+                helping useful books move from one student to another.
+
+            </p>
+
+
+            <div class="about-hero-buttons">
+
+                <a th:href="@{/product}"
+                   class="about-primary-btn">
+
+                    Explore Books
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+
+                <a th:href="@{/addBook}"
+                   class="about-secondary-btn">
+
+                    <i class="fa-solid fa-plus"></i>
+
+                    Sell a Book
+
+                </a>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="about-hero-image">
+
+
+            <img
+                    th:src="@{/images/education.jpg}"
+                    alt="Academic books"
+            >
+
+
+            <div class="about-stat-card">
+
+
+                <div class="about-stat-icon">
+
+                    <i class="fa-solid fa-arrows-rotate"></i>
+
+                </div>
+
+
+                <strong>
+                    Books that keep moving
+                </strong>
+
+
+                <span>
+                    Buy, sell and reuse academic books.
+                </span>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <div class="about-divider"></div>
+
+
+
+    <!-- ==================================================
+         WHO WE ARE
+    ================================================== -->
+
+    <section class="about-story">
+
+
+        <div class="about-story-image">
+
+
+            <img
+                    th:src="@{/images/laptop.jpg}"
+                    alt="Student using a laptop"
+            >
+
+
+            <span class="about-story-image-tag">
+
+                Built around students
+
+            </span>
+
+
+        </div>
+
+
+        <div class="about-story-content">
+
+
+            <p class="about-section-label">
+                Who We Are
+            </p>
+
+
+            <h2>
+
+                A simple place for
+                <span>students and books.</span>
+
+            </h2>
+
+
+            <p>
+
+                Academic books can be expensive, and many are used
+                for only a semester or two. HamroKitab provides a
+                simple way for students to find books they need and
+                sell books they no longer use.
+
+            </p>
+
+
+            <p>
+
+                Instead of letting useful books sit unused, HamroKitab
+                connects students who have books with students who are
+                looking for them.
+
+            </p>
+
+
+            <p>
+
+                Whether someone is looking for a textbook, entrance
+                preparation material, or a book for a particular
+                subject, the platform is designed to make that search
+                simpler.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         MISSION
+    ================================================== -->
+
+    <section class="about-mission">
+
+
+        <div class="about-mission-inner">
+
+
+            <p class="about-mission-label">
+                Our Mission
+            </p>
+
+
+            <h2>
+
+                Making academic books
+                <span>easier to access.</span>
+
+            </h2>
+
+
+            <p>
+
+                Our goal is to create an easy and student-friendly
+                platform where academic books can be reused, shared
+                and exchanged. HamroKitab focuses on making
+                second-hand books easier to discover while supporting
+                affordable learning.
+
+            </p>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         VALUES
+    ================================================== -->
+
+    <section class="about-values">
+
+
+        <div class="about-values-heading">
+
+
+            <div>
+
+                <p class="about-section-label">
+                    What Matters To Us
+                </p>
+
+                <h2>
+                    Why HamroKitab?
+                </h2>
+
+            </div>
+
+
+            <p>
+
+                The platform is built around a few simple ideas:
+                making books easier to access, encouraging reuse,
+                and helping students connect with each other.
+
+            </p>
+
+
+        </div>
+
+
+        <div class="about-values-grid">
+
+
+            <!-- Card 1 -->
+
+            <div class="about-value-card">
+
+
+                <div class="about-value-icon">
+
+                    <i class="fa-solid fa-book-open"></i>
+
+                </div>
+
+
+                <h3>
+                    Affordable Learning
+                </h3>
+
+
+                <p>
+
+                    Helping students discover second-hand academic
+                    books at more accessible prices.
+
+                </p>
+
+
+            </div>
+
+
+            <!-- Card 2 -->
+
+            <div class="about-value-card">
+
+
+                <div class="about-value-icon">
+
+                    <i class="fa-solid fa-recycle"></i>
+
+                </div>
+
+
+                <h3>
+                    Reuse Books
+                </h3>
+
+
+                <p>
+
+                    Giving previously used books another purpose
+                    instead of leaving them unused.
+
+                </p>
+
+
+            </div>
+
+
+            <!-- Card 3 -->
+
+            <div class="about-value-card">
+
+
+                <div class="about-value-icon">
+
+                    <i class="fa-solid fa-users"></i>
+
+                </div>
+
+
+                <h3>
+                    Student Community
+                </h3>
+
+
+                <p>
+
+                    Connecting students who want to buy and sell
+                    academic books through one platform.
+
+                </p>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         HOW HAMROKITAB WORKS
+    ================================================== -->
+
+    <section class="about-flow">
+
+
+        <div class="about-flow-inner">
+
+
+            <div class="about-flow-heading">
+
+
+                <p class="about-section-label">
+                    The Idea
+                </p>
+
+
+                <h2>
+                    Books move from student to student.
+                </h2>
+
+
+            </div>
+
+
+            <div class="about-flow-grid">
+
+
+                <div class="about-flow-card">
+
+                    <span class="about-flow-number">
+                        01
+                    </span>
+
+                    <i class="fa-solid fa-magnifying-glass"></i>
+
+                    <h3>
+                        Discover
+                    </h3>
+
+                    <p>
+                        Search for books by title, subject,
+                        category or other details.
+                    </p>
+
+                </div>
+
+
+                <div class="about-flow-card">
+
+                    <span class="about-flow-number">
+                        02
+                    </span>
+
+                    <i class="fa-solid fa-comments"></i>
+
+                    <h3>
+                        Connect
+                    </h3>
+
+                    <p>
+                        Contact the student who listed the
+                        book and ask questions.
+                    </p>
+
+                </div>
+
+
+                <div class="about-flow-card">
+
+                    <span class="about-flow-number">
+                        03
+                    </span>
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                    <h3>
+                        Order
+                    </h3>
+
+                    <p>
+                        Provide delivery information and
+                        place your order.
+                    </p>
+
+                </div>
+
+
+                <div class="about-flow-card">
+
+                    <span class="about-flow-number">
+                        04
+                    </span>
+
+                    <i class="fa-solid fa-book"></i>
+
+                    <h3>
+                        Reuse
+                    </h3>
+
+                    <p>
+                        A previously used book gets a new
+                        reader and a new chapter.
+                    </p>
+
+                </div>
+
+
+            </div>
+
+
+        </div>
+
+
+    </section>
+
+
+
+    <!-- ==================================================
+         CTA
+    ================================================== -->
+
+    <section class="about-cta">
+
+
+        <div class="about-cta-box">
+
+
+            <div class="about-cta-content">
+
+                <h2>
+                    Have a book you no longer need?
+                </h2>
+
+                <p>
+                    Give it another chapter with HamroKitab.
+                </p>
+
+            </div>
+
+
+            <a th:href="@{/addBook}"
+               class="about-cta-button">
+
+                Sell a Book
+
+                <i class="fa-solid fa-arrow-right"></i>
+
+            </a>
+
+
+        </div>
+
+
+    </section>
+
+
+</main>
+
+
+
+<!-- ==================================================
+     FOOTER
+================================================== -->
+
+<footer class="footer">
+
+
+    <div class="footer-container">
+
+
+        <div class="footer-about">
+
+            <h3>
+                HamroKitab
+            </h3>
+
+            <p>
+                Your platform for buying and selling
+                second-hand academic books.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>
+                Quick Links
+            </h4>
+
+            <ul>
+
+                <li>
+                    <a th:href="@{/}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/category}">
+                        Categories
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/product}">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/about}">
+                        About Us
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/addBook}">
+                        Sell a Book
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h4>
+                Contact
+            </h4>
+
+            <p>
+                Email: support@hamrokitab.com
+            </p>
+
+            <p>
+                Phone: +977-9800000000
+            </p>
+
+            <p>
+                Address: Kathmandu, Nepal
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            &copy; 2026 HamroKitab. All rights reserved.
+        </p>
+
+        <p>
+            Read. Reuse. Repeat.
+        </p>
+
+    </div>
+
+
+</footer>
+
+
+
+<!-- User / Mobile Menu -->
+
+<script th:src="@{/js/user.js}"></script>
+
+
+</body>
+
+</html>

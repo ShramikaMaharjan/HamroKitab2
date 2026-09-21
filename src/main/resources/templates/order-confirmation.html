@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Order Confirmed | HamroKitab</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "DM Sans", Arial, sans-serif;
+            background: #fbfaf8;
+            color: #252545;
+            min-height: 100vh;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 7%;
+            border-bottom: 1px solid #eeeeee;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #363795;
+            text-decoration: none;
+        }
+
+        .page {
+            max-width: 650px;
+            margin: 55px auto;
+            padding: 0 22px;
+        }
+
+        .confirmation-card {
+            background: white;
+            border-radius: 18px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.06);
+        }
+
+        .success-icon {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #eeeeff;
+            color: #363795;
+            border-radius: 50%;
+            font-size: 35px;
+            font-weight: bold;
+        }
+
+        h1 {
+            font-size: 30px;
+            margin-bottom: 10px;
+        }
+
+        .success-message {
+            color: #777;
+            font-size: 15px;
+            margin-bottom: 30px;
+        }
+
+        .order-box {
+            text-align: left;
+            border: 1px solid #eeeeee;
+            border-radius: 12px;
+            padding: 22px;
+            margin-bottom: 25px;
+        }
+
+        .order-box h2 {
+            font-size: 19px;
+            margin-bottom: 18px;
+        }
+
+        .order-row {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 11px 0;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 14px;
+        }
+
+        .order-row:last-child {
+            border-bottom: none;
+        }
+
+        .order-label {
+            color: #777;
+        }
+
+        .order-value {
+            font-weight: 600;
+            text-align: right;
+        }
+
+        .status {
+            color: #363795;
+            background: #eeeeff;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+        }
+
+        .next-message {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .button {
+            display: block;
+            padding: 13px;
+            border-radius: 9px;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            transition: 0.2s ease;
+        }
+
+        .primary-button {
+            background: #363795;
+            color: white;
+        }
+
+        .secondary-button {
+            border: 1px solid #363795;
+            color: #363795;
+            background: white;
+        }
+
+        .button:hover {
+            opacity: 0.9;
+        }
+
+        @media (max-width: 500px) {
+
+            .confirmation-card {
+                padding: 28px 20px;
+            }
+
+            h1 {
+                font-size: 25px;
+            }
+
+            .order-row {
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .order-value {
+                text-align: left;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<header class="header">
+
+    <a th:href="@{/}" class="logo">
+        HamroKitab
+    </a>
+
+</header>
+
+
+<main class="page">
+
+    <div class="confirmation-card">
+
+        <div class="success-icon">
+            ✓
+        </div>
+
+
+        <h1>
+            Order Placed Successfully!
+        </h1>
+
+
+        <p class="success-message">
+            Thank you for choosing HamroKitab.
+            Your order has been sent to the seller.
+        </p>
+
+
+        <div class="order-box">
+
+            <h2>
+                Order Summary
+            </h2>
+
+
+            <div class="order-row">
+
+                <span class="order-label">
+                    Order ID
+                </span>
+
+                <span class="order-value"
+                      th:text="'#' + ${order.id}">
+                    #1
+                </span>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span class="order-label">
+                    Book
+                </span>
+
+                <span class="order-value"
+                      th:text="${order.book.title}">
+                    Book Title
+                </span>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span class="order-label">
+                    Seller
+                </span>
+
+                <span class="order-value"
+                      th:text="${order.seller.username}">
+                    Seller
+                </span>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span class="order-label">
+                    Total Price
+                </span>
+
+                <span class="order-value"
+                      th:text="'NPR ' + ${order.price}">
+                    NPR 500
+                </span>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span class="order-label">
+                    Order Status
+                </span>
+
+                <span class="order-value">
+
+                    <span class="status"
+                          th:text="${order.status}">
+                        PENDING
+                    </span>
+
+                </span>
+
+            </div>
+
+
+            <div class="order-row">
+
+                <span class="order-label">
+                    Delivery Address
+                </span>
+
+                <span class="order-value"
+                      th:text="${order.deliveryAddress}">
+                    Kathmandu
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <p class="next-message">
+
+            The seller will review your order and update
+            the delivery status. You can track your order
+            from the My Orders page.
+
+        </p>
+
+
+        <div class="buttons">
+
+            <a th:href="@{/myOrders}"
+               class="button primary-button">
+                View My Orders
+            </a>
+
+
+            <a th:href="@{/product}"
+               class="button secondary-button">
+                Continue Shopping
+            </a>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

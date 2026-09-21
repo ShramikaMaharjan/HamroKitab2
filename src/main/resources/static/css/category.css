@@ -1,0 +1,718 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif !important;
+    color: #173B73;
+    background-color: #FFFFFF;
+}
+
+
+/* =========================
+   MAIN PAGE
+========================= */
+
+.category-page {
+    max-width: 1400px;
+    margin: 0 auto;
+
+    padding: 45px 5% 80px;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.category-heading {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.category-heading h1 {
+    color: #173B73;
+
+    font-size: 30px;
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+.category-heading p {
+    color: #7d91aa;
+    font-size: 13px;
+}
+
+
+/* =========================
+   MAIN LAYOUT
+========================= */
+
+.category-layout {
+    display: grid;
+
+    grid-template-columns: 220px 1fr;
+
+    gap: 38px;
+
+    align-items: start;
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.filter-sidebar {
+    padding-right: 25px;
+
+    border-right: 1px solid #EAF5FF;
+}
+
+.filter-header {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    margin-bottom: 25px;
+}
+
+.filter-header h3 {
+    color: #173B73;
+    font-size: 17px;
+}
+
+.filter-header a {
+    color: #2696E8;
+
+    font-size: 11px;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-form {
+    margin-bottom: 25px;
+}
+
+.search-form label {
+    display: block;
+
+    color: #173B73;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.search-box {
+    display: flex;
+
+    border: 1px solid #d5e7f7;
+
+    border-radius: 6px;
+
+    overflow: hidden;
+}
+
+.search-box input {
+    width: 100%;
+    min-width: 0;
+
+    padding: 9px;
+
+    border: none;
+    outline: none;
+
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+
+    color: #173B73;
+}
+
+.search-box button {
+    width: 34px;
+
+    border: none;
+
+    background-color: #FFFFFF;
+
+    color: #2696E8;
+
+    cursor: pointer;
+}
+
+
+/* =========================
+   FILTER SECTION
+========================= */
+
+.filter-section {
+    padding: 20px 0;
+
+    border-top: 1px solid #EAF5FF;
+}
+
+.filter-section h4 {
+    color: #173B73;
+
+    font-size: 12px;
+
+    margin-bottom: 16px;
+}
+
+.filter-section a {
+    display: block;
+
+    color: #5d718c;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    text-decoration: none;
+
+    margin-bottom: 12px;
+
+    transition: 0.2s ease;
+}
+
+.filter-section a:hover {
+    color: #2696E8;
+
+    padding-left: 3px;
+}
+
+.checkbox {
+    display: inline-block;
+
+    width: 10px;
+    height: 10px;
+
+    margin-right: 7px;
+
+    border: 1px solid #b9d5ee;
+
+    border-radius: 2px;
+
+    vertical-align: middle;
+}
+
+
+/* =========================
+   SIDEBAR BANNER
+========================= */
+
+.sidebar-banner {
+    margin-top: 15px;
+
+    padding: 20px 13px;
+
+    background-color: #EAF5FF;
+
+    border-radius: 12px;
+
+    text-align: center;
+}
+
+.sidebar-banner i {
+    color: #2696E8;
+
+    font-size: 23px;
+
+    margin-bottom: 10px;
+}
+
+.sidebar-banner h4 {
+    color: #173B73;
+
+    font-size: 12px;
+
+    margin-bottom: 8px;
+}
+
+.sidebar-banner p {
+    color: #4f6787;
+
+    font-size: 10px;
+
+    line-height: 1.5;
+
+    margin-bottom: 15px;
+}
+
+.sidebar-banner a {
+    display: inline-block;
+
+    padding: 8px 12px;
+
+    background-color: #2696E8;
+
+    color: #FFFFFF;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    text-decoration: none;
+}
+
+.sidebar-banner a:hover {
+    background-color: #173B73;
+}
+
+
+/* =========================
+   PRODUCTS HEADING
+========================= */
+
+.products-heading {
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    margin-bottom: 25px;
+}
+
+.products-heading h2 {
+    color: #173B73;
+
+    font-size: 21px;
+
+    margin-bottom: 5px;
+}
+
+.products-heading p {
+    color: #7d91aa;
+
+    font-size: 11px;
+}
+
+.book-count {
+    padding: 8px 12px;
+
+    background-color: #EAF5FF;
+
+    color: #4f6787;
+
+    border-radius: 20px;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    white-space: nowrap;
+}
+
+
+/* =========================
+   BOOK GRID
+========================= */
+
+.book-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+
+    gap: 25px 18px;
+}
+
+
+/* =========================
+   BOOK CARD
+========================= */
+
+.book-card {
+    min-width: 0;
+
+    overflow: hidden;
+
+    background-color: #FFFFFF;
+
+    border: 1px solid #edf4fa;
+
+    border-radius: 10px;
+
+    transition: 0.25s ease;
+}
+
+.book-card:hover {
+    transform: translateY(-4px);
+
+    box-shadow:
+            0 10px 25px rgba(23, 59, 115, 0.10);
+}
+
+
+/* =========================
+   BOOK IMAGE
+========================= */
+
+.book-image {
+    position: relative;
+
+    height: 220px;
+
+    padding: 15px;
+
+    background-color: #f7faff;
+}
+
+.book-image a {
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+}
+
+.book-image img {
+    width: 100%;
+    height: 100%;
+
+    object-fit: contain;
+
+    transition: 0.25s ease;
+}
+
+.book-card:hover .book-image img {
+    transform: scale(1.04);
+}
+
+.condition-badge {
+    position: absolute;
+
+    top: 10px;
+    left: 10px;
+
+    z-index: 1;
+
+    padding: 5px 7px;
+
+    background-color: #2696E8;
+
+    color: #FFFFFF;
+
+    border-radius: 4px;
+
+    font-size: 8px;
+    font-weight: 700;
+}
+
+.no-image {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    flex-direction: column;
+
+    gap: 8px;
+
+    color: #9aabc0;
+
+    font-size: 11px;
+}
+
+.no-image i {
+    color: #2696E8;
+    font-size: 30px;
+}
+
+
+/* =========================
+   BOOK DETAILS
+========================= */
+
+.book-details {
+    padding: 15px;
+}
+
+.book-category {
+    color: #2696E8;
+
+    font-size: 9px;
+    font-weight: 700;
+
+    margin-bottom: 7px;
+}
+
+.book-details h3 {
+    min-height: 35px;
+
+    margin-bottom: 7px;
+}
+
+.book-details h3 a {
+    color: #173B73;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    text-decoration: none;
+}
+
+.book-details h3 a:hover {
+    color: #2696E8;
+}
+
+.book-author {
+    color: #7d91aa;
+
+    font-size: 10px;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.book-rating {
+    margin-bottom: 10px;
+}
+
+.book-rating span {
+    color: #FFB82E;
+
+    font-size: 11px;
+
+    letter-spacing: 1px;
+}
+
+
+/* =========================
+   PRICE
+========================= */
+
+.book-price {
+    display: block;
+
+    color: #173B73;
+
+    font-size: 13px;
+
+    margin-bottom: 13px;
+}
+
+
+/* =========================
+   ADD TO CART
+========================= */
+
+.book-details form {
+    width: 100%;
+}
+
+.add-cart-button {
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 7px;
+
+    padding: 9px 10px;
+
+    background-color: #FFFFFF;
+
+    color: #2696E8;
+
+    border: 1px solid #f0c4c4;
+
+    border-radius: 5px;
+
+    font-family: Arial, sans-serif;
+
+    font-size: 10px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.add-cart-button:hover {
+    background-color: #2696E8;
+
+    color: #FFFFFF;
+
+    border-color: #2696E8;
+}
+
+
+/* =========================
+   EMPTY STATE
+========================= */
+
+.empty-books {
+    padding: 60px 20px;
+
+    text-align: center;
+
+    border: 1px dashed #d5e7f7;
+
+    border-radius: 15px;
+}
+
+.empty-books i {
+    color: #2696E8;
+
+    font-size: 35px;
+
+    margin-bottom: 15px;
+}
+
+.empty-books h3 {
+    color: #173B73;
+
+    font-size: 18px;
+
+    margin-bottom: 8px;
+}
+
+.empty-books p {
+    color: #7d91aa;
+
+    font-size: 12px;
+
+    margin-bottom: 20px;
+}
+
+.empty-books a {
+    display: inline-block;
+
+    padding: 10px 18px;
+
+    background-color: #2696E8;
+
+    color: #FFFFFF;
+
+    border-radius: 20px;
+
+    font-size: 11px;
+
+    text-decoration: none;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1050px) {
+
+    .category-layout {
+        grid-template-columns: 190px 1fr;
+
+        gap: 25px;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 750px) {
+
+    .category-layout {
+        grid-template-columns: 1fr;
+    }
+
+    .filter-sidebar {
+        padding-right: 0;
+        padding-bottom: 25px;
+
+        border-right: none;
+        border-bottom: 1px solid #EAF5FF;
+    }
+
+    .sidebar-banner {
+        display: none;
+    }
+
+    .book-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .category-page {
+        padding: 30px 4% 60px;
+    }
+
+    .category-heading h1 {
+        font-size: 25px;
+    }
+
+    .products-heading h2 {
+        font-size: 18px;
+    }
+
+    .book-grid {
+        gap: 12px;
+    }
+
+    .book-image {
+        height: 155px;
+
+        padding: 10px;
+    }
+
+    .book-details {
+        padding: 10px;
+    }
+
+    .book-details h3 {
+        min-height: 40px;
+    }
+
+    .book-details h3 a {
+        font-size: 11px;
+    }
+
+    .book-price {
+        font-size: 11px;
+    }
+
+    .add-cart-button {
+        padding: 8px 5px;
+
+        font-size: 9px;
+    }
+
+}

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Email Verification - HamroKitab</title>
+
+    <style>
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #fbfaf8;
+            color: #252545;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            min-height: 100vh;
+        }
+
+        .box {
+            background: white;
+            padding: 40px;
+            width: 420px;
+            text-align: center;
+
+            border-radius: 12px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.08);
+        }
+
+        h1 {
+            color: #363795;
+            margin-bottom: 15px;
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        .login-btn {
+            display: inline-block;
+            margin-top: 20px;
+
+            padding: 12px 25px;
+
+            background: #363795;
+            color: white;
+
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+    <h1>HamroKitab</h1>
+
+    <p th:text="${message}">
+        Email verification message
+    </p>
+
+    <a href="/login" class="login-btn">
+        Go to Login
+    </a>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Write Feedback | HamroKitab</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Header CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/header.css}">
+
+    <!-- Feedback CSS -->
+    <link rel="stylesheet"
+          th:href="@{/css/feedback.css}">
+
+</head>
+
+<body>
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="logo">
+            <a th:href="@{/}">
+                <img th:src="@{/images/logo.png}"
+                     alt="HamroKitab Logo"
+                     class="logo-img">
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <ul>
+
+                <li>
+                    <a th:href="@{/}">
+                        Home
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/product}">
+                        Products
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/category}">
+                        Category
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/about}">
+                        About Us
+                    </a>
+                </li>
+
+                <li>
+                    <a th:href="@{/addBook}">
+                        <i class="fa-solid fa-plus"></i>
+                        Sell a Book
+                    </a>
+                </li>
+
+            </ul>
+        </nav>
+
+        <div class="nav-right">
+
+            <div class="nav-cart">
+                <a th:href="@{/cart}"
+                   aria-label="Shopping cart">
+
+                    <i class="fa-solid fa-cart-shopping"></i>
+
+                </a>
+            </div>
+
+            <!-- Logged-in user -->
+            <div class="user-menu"
+                 th:if="${session.loggedInUser != null}">
+
+                <i class="fa-solid fa-user"
+                   id="user-icon"
+                   aria-label="User menu"
+                   role="button"
+                   tabindex="0">
+                </i>
+
+                <div class="dropdown-menu"
+                     id="dropdown">
+
+                    <p class="welcome-user">
+
+                        Hello,
+
+                        <span th:text="${session.loggedInUser.username}">
+                            User
+                        </span>
+
+                    </p>
+
+                    <a th:href="@{/profile}">
+                        <i class="fa-solid fa-id-card"></i>
+                        My Profile
+                    </a>
+
+                    <a th:href="@{/myOrders}">
+                        <i class="fa-solid fa-box"></i>
+                        My Orders
+                    </a>
+
+                    <a th:href="@{/sellerorders}">
+                        <i class="fa-solid fa-truck"></i>
+                        Seller Orders
+                    </a>
+
+                    <a th:href="@{/myListings}">
+                        <i class="fa-solid fa-book-open"></i>
+                        My Listings
+                    </a>
+
+                    <a th:href="@{/messages}">
+                        <i class="fa-solid fa-inbox"></i>
+                        Inbox
+                    </a>
+
+                    <a th:href="@{/sentMessages}">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Sent Messages
+                    </a>
+
+                    <a th:href="@{/wishlist}">
+                        <i class="fa-solid fa-heart"></i>
+                        Wishlist
+                    </a>
+
+                    <a th:href="@{/feedback}">
+                        <i class="fa-solid fa-comment"></i>
+                        Write Feedback
+                    </a>
+
+                    <a th:href="@{/logoutUser}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Logged-out user -->
+            <div class="auth-links"
+                 th:if="${session.loggedInUser == null}">
+
+                <a th:href="@{/register}">
+                    Create Account
+                </a>
+
+                <a th:href="@{/login}">
+                    Log In
+                </a>
+
+            </div>
+
+            <div class="nav-icon"
+                 id="menu-icon"
+                 aria-label="Open navigation menu"
+                 role="button"
+                 tabindex="0">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</header>
+
+
+<!-- =========================
+     FEEDBACK PAGE
+========================= -->
+
+<main class="feedback-page">
+
+    <div class="feedback-container">
+
+        <div class="feedback-heading">
+
+            <span class="feedback-label">
+                YOUR EXPERIENCE
+            </span>
+
+            <h1>
+                Share Your Feedback
+            </h1>
+
+            <p>
+                Tell us about your experience with HamroKitab.
+                Your feedback helps us improve the platform.
+            </p>
+
+        </div>
+
+
+        <div class="feedback-card">
+
+            <form th:action="@{/feedback}"
+                  method="post">
+
+
+                <!-- Rating -->
+
+                <div class="form-group">
+
+                    <label>
+                        How would you rate HamroKitab?
+                    </label>
+
+                    <div class="rating-options">
+
+                        <input type="radio"
+                               id="star5"
+                               name="rating"
+                               value="5"
+                               required>
+
+                        <label for="star5">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+
+
+                        <input type="radio"
+                               id="star4"
+                               name="rating"
+                               value="4">
+
+                        <label for="star4">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+
+
+                        <input type="radio"
+                               id="star3"
+                               name="rating"
+                               value="3">
+
+                        <label for="star3">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+
+
+                        <input type="radio"
+                               id="star2"
+                               name="rating"
+                               value="2">
+
+                        <label for="star2">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+
+
+                        <input type="radio"
+                               id="star1"
+                               name="rating"
+                               value="1">
+
+                        <label for="star1">
+                            <i class="fa-solid fa-star"></i>
+                        </label>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Message -->
+
+                <div class="form-group">
+
+                    <label for="message">
+                        Your Feedback
+                    </label>
+
+                    <textarea id="message"
+                              name="message"
+                              rows="6"
+                              maxlength="1000"
+                              placeholder="What did you like about HamroKitab? Is there anything we could improve?"
+                              required></textarea>
+
+                </div>
+
+
+                <!-- Buttons -->
+
+                <div class="feedback-actions">
+
+                    <a th:href="@{/}">
+                        Cancel
+                    </a>
+
+                    <button type="submit">
+
+                        Submit Feedback
+
+                        <i class="fa-solid fa-paper-plane"></i>
+
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+
+    </div>
+
+</main>
+
+
+<script>
+
+    const userIcon =
+        document.getElementById("user-icon");
+
+    const dropdown =
+        document.getElementById("dropdown");
+
+    if (userIcon && dropdown) {
+
+        userIcon.addEventListener("click", function () {
+
+            dropdown.classList.toggle("show");
+
+        });
+
+    }
+
+</script>
+
+</body>
+</html>

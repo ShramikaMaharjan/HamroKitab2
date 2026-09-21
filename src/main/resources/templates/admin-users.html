@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Users - HamroKitab</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fbfaf8;
+            color: #252545;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e8e7ef;
+        }
+
+        .header-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 125px;
+        }
+
+        .back {
+            color: #363795;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 40px 25px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #77778d;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .table-container {
+            background: white;
+            border: 1px solid #e8e7ef;
+            border-radius: 15px;
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 650px;
+        }
+
+        th,
+        td {
+            padding: 16px 18px;
+            text-align: left;
+            border-bottom: 1px solid #eeeeF5;
+        }
+
+        th {
+            background: #fafaff;
+            color: #77778d;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: .5px;
+        }
+
+        td {
+            font-size: 13px;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        .role {
+            display: inline-block;
+            padding: 5px 9px;
+            border-radius: 20px;
+            background: #f0efff;
+            color: #363795;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .verified {
+            color: #363795;
+            font-weight: bold;
+        }
+
+        .not-verified {
+            color: #88889b;
+        }
+
+        @media (max-width: 600px) {
+
+            .container {
+                padding: 30px 18px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header class="header">
+
+    <div class="header-container">
+
+        <a th:href="@{/}"
+           class="logo">
+
+            <img th:src="@{/images/logo.png}"
+                 alt="HamroKitab Logo">
+
+        </a>
+
+        <a th:href="@{/admin}"
+           class="back">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <h1>Manage Users</h1>
+
+    <p class="subtitle">
+        View registered HamroKitab users.
+    </p>
+
+
+    <div class="table-container">
+
+        <table>
+
+            <thead>
+
+            <tr>
+
+                <th>ID</th>
+
+                <th>Username</th>
+
+                <th>Email</th>
+
+                <th>Role</th>
+
+                <th>Verification</th>
+
+            </tr>
+
+            </thead>
+
+
+            <tbody>
+
+            <tr th:each="user : ${users}">
+
+                <td th:text="${user.id}">
+                    1
+                </td>
+
+                <td th:text="${user.username}">
+                    User
+                </td>
+
+                <td th:text="${user.email}">
+                    user@email.com
+                </td>
+
+                <td>
+
+                    <span class="role"
+                          th:text="${user.role}">
+                        STUDENT
+                    </span>
+
+                </td>
+
+                <td>
+
+                    <span class="verified"
+                          th:if="${user.verified}">
+                        Verified
+                    </span>
+
+                    <span class="not-verified"
+                          th:unless="${user.verified}">
+                        Not Verified
+                    </span>
+
+                </td>
+
+            </tr>
+
+
+            <tr th:if="${#lists.isEmpty(users)}">
+
+                <td colspan="5">
+                    No users found.
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

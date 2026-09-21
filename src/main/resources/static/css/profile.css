@@ -1,0 +1,424 @@
+
+    /* ================= PROFILE PAGE ================= */
+
+.profile-page {
+    width: 90%;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 70px 0 90px;
+}
+
+
+/* ================= PROFILE INTRO ================= */
+
+.profile-intro {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    margin-bottom: 45px;
+}
+
+.profile-avatar {
+    width: 86px;
+    height: 86px;
+    flex-shrink: 0;
+
+    border-radius: 50%;
+
+    background: #363795;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+}
+
+.profile-eyebrow,
+.section-heading span,
+.banner-label {
+    display: block;
+
+    color: #363795;
+
+    font-size: 12px;
+    font-weight: 700;
+
+    letter-spacing: 1.4px;
+}
+
+.profile-eyebrow {
+    margin-bottom: 7px;
+}
+
+.profile-heading h1 {
+    margin: 0 0 5px;
+
+    color: #252545;
+
+    font-size: 42px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+
+.profile-heading p:last-child {
+    margin: 0;
+
+    color: #77778c;
+    font-size: 15px;
+}
+
+
+/* ================= COMMON CARD ================= */
+
+.profile-card {
+    background: white;
+
+    border: 1px solid #e8e8ef;
+    border-radius: 20px;
+
+    padding: 32px;
+
+    box-shadow: 0 10px 30px rgba(37, 37, 69, 0.04);
+
+    margin-bottom: 55px;
+}
+
+.section-heading {
+    margin-bottom: 27px;
+}
+
+.section-heading span {
+    margin-bottom: 6px;
+}
+
+.section-heading h2 {
+    margin: 0;
+
+    color: #252545;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+
+/* ================= ACCOUNT INFORMATION ================= */
+
+.account-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    border: 1px solid #e8e8ef;
+    border-radius: 14px;
+
+    overflow: hidden;
+}
+
+.account-item {
+    padding: 22px;
+
+    border-right: 1px solid #e8e8ef;
+    border-bottom: 1px solid #e8e8ef;
+}
+
+.account-item:nth-child(2n) {
+    border-right: none;
+}
+
+.account-item:nth-child(3),
+.account-item:nth-child(4) {
+    border-bottom: none;
+}
+
+.account-item label {
+    display: block;
+
+    color: #858599;
+
+    font-size: 13px;
+
+    margin-bottom: 7px;
+}
+
+.account-item p {
+    margin: 0;
+
+    color: #252545;
+
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.verified {
+    color: #167a58 !important;
+}
+
+.not-verified {
+    color: #a66a00 !important;
+}
+
+
+/* ================= QUICK ACCESS ================= */
+
+.quick-access {
+    margin-bottom: 55px;
+}
+
+.quick-grid {
+    display: grid;
+
+    grid-template-columns: repeat(2, 1fr);
+
+    gap: 18px;
+}
+
+.quick-card {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    gap: 17px;
+
+    min-height: 105px;
+
+    padding: 22px;
+
+    background: white;
+
+    border: 1px solid #e8e8ef;
+    border-radius: 17px;
+
+    text-decoration: none;
+
+    transition: 0.25s ease;
+}
+
+.quick-card:hover {
+    transform: translateY(-3px);
+
+    border-color: #cfcfe2;
+
+    box-shadow: 0 12px 28px rgba(37, 37, 69, 0.07);
+}
+
+.quick-icon {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border-radius: 13px;
+
+    background: #f1f1ff;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    color: #363795;
+
+    font-size: 19px;
+}
+
+.quick-content {
+    padding-right: 25px;
+}
+
+.quick-content h3 {
+    margin: 0 0 4px;
+
+    color: #252545;
+
+    font-size: 17px;
+    font-weight: 700;
+}
+
+.quick-content p {
+    margin: 0;
+
+    color: #77778c;
+
+    font-size: 13px;
+    line-height: 1.5;
+}
+
+.card-arrow {
+    position: absolute;
+
+    right: 20px;
+    top: 50%;
+
+    transform: translateY(-50%);
+
+    color: #363795;
+
+    font-size: 15px;
+
+    transition: 0.2s ease;
+}
+
+.quick-card:hover .card-arrow {
+    transform: translate(4px, -50%);
+}
+
+
+/* ================= SELL BANNER ================= */
+
+.sell-banner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    padding: 32px;
+
+    background: #252545;
+
+    border-radius: 20px;
+
+    color: white;
+
+    margin-bottom: 30px;
+}
+
+.banner-label {
+    color: #a9a9d4;
+
+    margin-bottom: 8px;
+}
+
+.sell-banner h2 {
+    margin: 0 0 7px;
+
+    font-size: 25px;
+    font-weight: 700;
+}
+
+.sell-banner p {
+    margin: 0;
+
+    max-width: 620px;
+
+    color: #d2d2e0;
+
+    font-size: 14px;
+}
+
+.sell-button {
+    flex-shrink: 0;
+
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+
+    padding: 12px 20px;
+
+    background: white;
+
+    color: #252545;
+
+    border-radius: 10px;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: 0.2s ease;
+}
+
+.sell-button:hover {
+    background: #f0f0f5;
+}
+
+
+/* ================= LOGOUT ================= */
+
+.profile-logout {
+    text-align: center;
+}
+
+.profile-logout a {
+    color: #77778c;
+
+    font-size: 14px;
+
+    text-decoration: none;
+}
+
+.profile-logout a:hover {
+    color: #363795;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+
+    .profile-page {
+        width: 92%;
+        padding-top: 50px;
+    }
+
+    .quick-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .sell-banner {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .sell-button {
+        width: fit-content;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .profile-intro {
+        align-items: flex-start;
+    }
+
+    .profile-avatar {
+        width: 68px;
+        height: 68px;
+
+        font-size: 25px;
+    }
+
+    .profile-heading h1 {
+        font-size: 30px;
+    }
+
+    .profile-card {
+        padding: 22px;
+    }
+
+    .account-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .account-item,
+    .account-item:nth-child(2n),
+    .account-item:nth-child(3),
+    .account-item:nth-child(4) {
+        border-right: none;
+        border-bottom: 1px solid #e8e8ef;
+    }
+
+    .account-item:last-child {
+        border-bottom: none;
+    }
+
+    .sell-banner {
+        padding: 25px;
+    }
+
+}

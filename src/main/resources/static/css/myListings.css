@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #fbfaf8;
+    color: #252545;
+}
+
+.alert {
+    padding: 14px 20px;
+    margin-bottom: 25px;
+    border-radius: 8px;
+    font-size: 14px;
+}
+
+.error-alert {
+    background: #fff0f0;
+    color: #b42318;
+    border: 1px solid #f5c2c2;
+}
+
+.success-alert {
+    background: #eefbf2;
+    color: #217a3c;
+    border: 1px solid #bce5c7;
+}
+.listings-container {
+    width: 90%;
+    max-width: 1100px;
+    margin: 50px auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #363795;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #777;
+}
+
+
+/* ================= BOOK LIST ================= */
+
+.book-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px;
+}
+
+.book-card {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    display: flex;
+    gap: 20px;
+    box-shadow: 0 8px 30px rgba(37, 37, 69, 0.08);
+}
+
+.book-image {
+    width: 150px;
+    height: 190px;
+    flex-shrink: 0;
+    border-radius: 10px;
+    overflow: hidden;
+    background: #f0efff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.book-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.no-image {
+    color: #777;
+    font-size: 14px;
+}
+
+.book-information {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex: 1;
+}
+
+.book-information h2 {
+    font-size: 21px;
+    margin-bottom: 6px;
+}
+
+.author {
+    color: #777;
+    margin-bottom: 15px;
+}
+
+.price {
+    color: #363795;
+    font-size: 19px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.condition {
+    background: #f0efff;
+    color: #363795;
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 13px;
+    margin-bottom: 20px;
+}
+
+.view-button {
+    background: #363795;
+    color: white;
+    text-decoration: none;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.view-button:hover {
+    background: #2a2b73;
+}
+
+
+/* ================= BOOK ACTIONS ================= */
+
+.book-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: auto;
+    align-items: center;
+}
+
+/* Reset the inline <form> so it sits inline with the buttons */
+.book-actions form {
+    display: inline;
+    margin: 0;
+}
+
+.edit-button {
+    background: white;
+    color: #363795;
+    text-decoration: none;
+    padding: 10px 18px;
+    border: 1px solid #363795;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.edit-button:hover {
+    background: #f0efff;
+}
+
+/* Delete button — matches the outlined style of Edit, but red */
+.delete-button {
+    background: white;
+    color: #c0392b;
+    border: 1px solid #c0392b;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.delete-button:hover {
+    background: #fff3f2;
+}
+
+
+/* ================= EMPTY ================= */
+
+.empty-listings {
+    background: white;
+    border-radius: 16px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(37, 37, 69, 0.08);
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.empty-listings h2 {
+    margin-bottom: 8px;
+}
+
+.empty-listings p {
+    color: #777;
+    margin-bottom: 20px;
+}
+
+.add-button {
+    display: inline-block;
+    background: #363795;
+    color: white;
+    text-decoration: none;
+    padding: 11px 20px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 800px) {
+    .book-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 550px) {
+    .book-card {
+        flex-direction: column;
+    }
+
+    .book-image {
+        width: 100%;
+        height: 230px;
+    }
+}

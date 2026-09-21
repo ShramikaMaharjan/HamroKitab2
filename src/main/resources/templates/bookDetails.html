@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+
+    <title>Book Details | Hamro Kitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/bookDetails.css}">
+    
+
+</head>
+
+<body>
+
+<div class="details-container">
+
+
+    <a th:href="@{/product}" class="back-link">
+        ← Back to Books
+    </a>
+
+    <div class="book-details-card">
+
+        <div class="book-image">
+
+            <img th:if="${book.image != null}"
+                 th:src="'data:' + ${book.imageType} + ';base64,' + ${book.imageBase64}"
+                 alt="Book Image">
+
+            <p th:if="${book.image == null}">
+                No Image Available
+            </p>
+
+        </div>
+
+        <div class="book-information">
+
+            <h1 th:text="${book.title}">
+                Book Title
+            </h1>
+
+            <p class="author" th:text="'By ' + ${book.author}">
+                By Author
+            </p>
+
+            <h2 th:text="'NPR ' + ${book.price}">
+                NPR 0
+            </h2>
+
+            <div class="book-info">
+
+                <p>
+                    <strong>Category:</strong>
+                    <span th:text="${book.category}"></span>
+                </p>
+
+                <p>
+                    <strong>Semester:</strong>
+                    <span th:text="${book.semester}"></span>
+                </p>
+
+                <p>
+                    <strong>Subject:</strong>
+                    <span th:text="${book.subject}"></span>
+                </p>
+
+                <p>
+                    <strong>Institution:</strong>
+                    <span th:text="${book.institution}"></span>
+                </p>
+
+                <p>
+                    <strong>Condition:</strong>
+                    <span th:text="${book.condition}"></span>
+                </p>
+
+                <p>
+                    <strong>Seller:</strong>
+                    <span th:text="${book.owner.username}"></span>
+                </p>
+
+            </div>
+
+            <div class="description">
+
+                <h3>Description</h3>
+
+                <p th:text="${book.description}">
+                    Book description
+                </p>
+
+            </div>
+
+            <!-- Action buttons -->
+            <div class="action-buttons">
+
+                <div class="main-actions">
+
+                    <!-- Buy Now -->
+                    <a th:href="@{/order/{id}(id=${book.id})}"
+                       class="buy-button">
+                        Buy Now
+                    </a>
+
+                    <!-- Add to Cart -->
+                    <a th:href="@{/cart/add/{id}(id=${book.id})}"
+                       class="cart-button">
+                        Add to Cart
+                    </a>
+
+                </div>
+
+                <!-- Contact Seller -->
+                <a th:href="@{/contactSeller/{id}(id=${book.id})}"
+                   class="contact-button">
+                    Contact Seller
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,636 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #fbfaf8;
+    color: #252545;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* =========================
+NAVBAR
+========================= */
+
+.navbar {
+    width: 100%;
+    background: #ffffff;
+    border-bottom: 1px solid #eeeeee;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.nav-container {
+    width: 92%;
+    max-width: 1250px;
+    min-height: 78px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.logo {
+    flex-shrink: 0;
+}
+
+.logo-img {
+    width: 145px;
+    height: auto;
+    display: block;
+}
+
+/* Navigation */
+
+.nav-menu {
+    flex: 1;
+}
+
+.nav-menu ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+}
+
+.nav-menu ul li a {
+    font-size: 14px;
+    font-weight: 600;
+    color: #252545;
+    transition: 0.3s ease;
+    white-space: nowrap;
+}
+
+.nav-menu ul li a:hover {
+    color: #363795;
+}
+
+/* Search */
+
+.nav-search {
+    display: flex;
+    align-items: center;
+    width: 210px;
+    height: 40px;
+    background: #f5f5f5;
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid #eeeeee;
+}
+
+.nav-search input {
+    width: 100%;
+    height: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    padding: 0 14px;
+    font-size: 13px;
+    color: #252545;
+}
+
+.nav-search input::placeholder {
+    color: #888888;
+}
+
+.nav-search button {
+    width: 42px;
+    height: 100%;
+    border: none;
+    background: transparent;
+    color: #363795;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+/* Right side */
+
+.nav-right {
+    display: flex;
+    align-items: center;
+    gap: 19px;
+}
+
+.nav-cart a,
+.user-menu > i,
+.nav-icon i {
+    font-size: 18px;
+    color: #252545;
+    transition: 0.3s ease;
+}
+
+.nav-cart a:hover,
+.user-menu > i:hover,
+.nav-icon i:hover {
+    color: #363795;
+}
+
+.nav-icon {
+    display: none;
+    cursor: pointer;
+}
+
+/* User dropdown */
+
+.user-menu {
+    position: relative;
+    cursor: pointer;
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    width: 175px;
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 12px 30px rgba(37, 37, 69, 0.12);
+    border: 1px solid #eeeeee;
+    padding: 8px 0;
+    display: none;
+    z-index: 2000;
+}
+
+.user-menu:hover .dropdown-menu {
+    display: block;
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 16px;
+    font-size: 13px;
+    color: #252545;
+    transition: 0.2s ease;
+}
+
+.dropdown-menu a:hover {
+    background: #f5f5ff;
+    color: #363795;
+}
+
+/* =========================
+MAIN / HERO SECTION
+========================= */
+
+.main-container {
+    width: 92%;
+    max-width: 1150px;
+    margin: 70px auto 80px;
+    min-height: 390px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 70px;
+}
+
+/* Left content */
+
+.left-content {
+    flex: 1;
+    max-width: 600px;
+}
+
+.left-content h1 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: clamp(42px, 5vw, 66px);
+    line-height: 1.08;
+    letter-spacing: -2px;
+    color: #252545;
+    margin-bottom: 22px;
+}
+
+.left-content h1::first-line {
+    color: #363795;
+}
+
+.left-content p {
+    max-width: 490px;
+    font-size: 17px;
+    line-height: 1.7;
+    color: #666675;
+}
+
+/* Login box */
+
+.login-box {
+    width: 390px;
+    flex-shrink: 0;
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 20px;
+    padding: 34px;
+    box-shadow: 0 18px 45px rgba(37, 37, 69, 0.09);
+}
+
+.login-box h2 {
+    font-size: 23px;
+    margin-bottom: 24px;
+    color: #252545;
+}
+
+.login-box input {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #dddddd;
+    border-radius: 10px;
+    padding: 0 15px;
+    margin-bottom: 14px;
+    outline: none;
+    font-size: 14px;
+    color: #252545;
+    transition: 0.3s ease;
+}
+
+.login-box input:focus {
+    border-color: #363795;
+    box-shadow: 0 0 0 3px rgba(54, 55, 149, 0.08);
+}
+
+.login-box > a {
+    display: block;
+}
+
+.login-btn {
+    width: 100%;
+    height: 50px;
+    border: none;
+    border-radius: 10px;
+    background: #363795;
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.login-btn:hover {
+    background: #252545;
+    transform: translateY(-1px);
+}
+
+.login-links {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 12px;
+    color: #999999;
+}
+
+.login-links a {
+    color: #363795;
+    font-weight: 600;
+}
+
+.login-links a:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+WHY SELL
+========================= */
+
+.why-sell {
+    width: 92%;
+    max-width: 1150px;
+    margin: 0 auto 100px;
+    text-align: center;
+}
+
+.why-sell > h2,
+.start-selling > h2 {
+    font-family: Georgia, "Times New Roman", serif;
+    font-size: 38px;
+    color: #252545;
+    margin-bottom: 45px;
+    letter-spacing: -1px;
+}
+
+.features-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.reason-card {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 17px;
+    padding: 30px 24px;
+    text-align: left;
+    min-height: 190px;
+    transition: 0.3s ease;
+}
+
+.reason-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(37, 37, 69, 0.09);
+    border-color: #dedfff;
+}
+
+.reason-card i {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #f0f0ff;
+    color: #363795;
+    border-radius: 12px;
+    font-size: 19px;
+    margin-bottom: 18px;
+}
+
+.reason-card h3 {
+    font-size: 17px;
+    margin-bottom: 7px;
+    color: #252545;
+}
+
+.reason-card p {
+    font-size: 13px;
+    color: #777777;
+    line-height: 1.6;
+}
+
+/* =========================
+START SELLING
+========================= */
+
+.start-selling {
+    width: 92%;
+    max-width: 1150px;
+    margin: 0 auto 100px;
+    text-align: center;
+}
+
+.steps {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 18px;
+}
+
+.step {
+    background: #ffffff;
+    border: 1px solid #eeeeee;
+    border-radius: 17px;
+    padding: 28px 18px;
+    min-height: 290px;
+    transition: 0.3s ease;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(37, 37, 69, 0.08);
+}
+
+.step img {
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+    margin-bottom: 18px;
+}
+
+.step h3 {
+    font-size: 16px;
+    line-height: 1.35;
+    margin-bottom: 12px;
+    color: #252545;
+}
+
+.step p {
+    font-size: 12px;
+    line-height: 1.65;
+    color: #777777;
+}
+
+/* =========================
+CTA
+========================= */
+
+.cta-section {
+    width: 92%;
+    max-width: 1150px;
+    margin: 0 auto 80px;
+    border-radius: 24px;
+    background: #363795;
+    overflow: hidden;
+}
+
+.cta-content {
+    min-height: 250px;
+    padding: 55px 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 40px;
+}
+
+.cta-content h2 {
+    max-width: 650px;
+    font-family: Georgia, "Times New Roman", serif;
+    color: #ffffff;
+    font-size: 34px;
+    line-height: 1.2;
+    letter-spacing: -0.7px;
+}
+
+.cta-button {
+    flex-shrink: 0;
+    padding: 14px 27px;
+    background: #ffffff;
+    color: #363795;
+    border-radius: 9px;
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.5px;
+    transition: 0.3s ease;
+}
+
+.cta-button:hover {
+    background: #252545;
+    color: #ffffff;
+    transform: translateY(-2px);
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media (max-width: 1100px) {
+
+    .nav-container {
+        gap: 18px;
+    }
+
+    .nav-menu ul {
+        gap: 15px;
+    }
+
+    .nav-menu ul li a {
+        font-size: 13px;
+    }
+
+    .nav-search {
+        width: 175px;
+    }
+
+    .main-container {
+        gap: 40px;
+    }
+
+    .steps {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 850px) {
+
+    .nav-menu,
+    .nav-search {
+        display: none;
+    }
+
+    .nav-container {
+        justify-content: space-between;
+    }
+
+    .nav-icon {
+        display: block;
+    }
+
+    .main-container {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 50px;
+    }
+
+    .left-content {
+        max-width: 650px;
+    }
+
+    .left-content p {
+        margin: auto;
+    }
+
+    .login-box {
+        width: min(100%, 430px);
+    }
+
+    .features-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .cta-content {
+        flex-direction: column;
+        text-align: center;
+        justify-content: center;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .nav-container {
+        min-height: 68px;
+    }
+
+    .logo-img {
+        width: 125px;
+    }
+
+    .nav-right {
+        gap: 14px;
+    }
+
+    .main-container {
+        width: 88%;
+        margin: 40px auto 65px;
+    }
+
+    .left-content h1 {
+        font-size: 40px;
+        letter-spacing: -1.5px;
+    }
+
+    .left-content p {
+        font-size: 15px;
+    }
+
+    .login-box {
+        padding: 25px 20px;
+        border-radius: 16px;
+    }
+
+    .why-sell > h2,
+    .start-selling > h2 {
+        font-size: 30px;
+        margin-bottom: 30px;
+    }
+
+    .features-container {
+        grid-template-columns: 1fr;
+    }
+
+    .reason-card {
+        text-align: center;
+    }
+
+    .reason-card i {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .steps {
+        grid-template-columns: 1fr;
+    }
+
+    .step {
+        min-height: auto;
+    }
+
+    .cta-section {
+        width: 92%;
+        border-radius: 18px;
+    }
+
+    .cta-content {
+        padding: 45px 25px;
+        min-height: 280px;
+    }
+
+    .cta-content h2 {
+        font-size: 28px;
+    }
+
+}
+
+@media (max-width: 400px) {
+
+    .left-content h1 {
+        font-size: 34px;
+    }
+
+    .login-box h2 {
+        font-size: 20px;
+    }
+
+    .why-sell > h2,
+    .start-selling > h2 {
+        font-size: 27px;
+    }
+
+    .cta-content h2 {
+        font-size: 25px;
+    }
+
+}

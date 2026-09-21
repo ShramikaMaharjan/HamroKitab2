@@ -1,0 +1,155 @@
+/* ================= GENERAL ================= */
+
+.reply-page {
+    min-height: 100vh;
+    padding: 50px 20px;
+    background: #fbfaf8;
+    color: #252545;
+    font-family: "DM Sans", Arial, sans-serif;
+}
+
+.reply-container {
+    width: 100%;
+    max-width: 750px;
+    margin: 0 auto;
+}
+
+/* ================= HEADING ================= */
+
+.reply-container h1 {
+    margin-bottom: 28px;
+    color: #252545;
+    font-family: "Playfair Display", Georgia, serif;
+    font-size: 34px;
+    font-weight: 700;
+}
+
+/* ================= ORIGINAL MESSAGE ================= */
+
+.reply-original-card {
+    padding: 25px;
+    margin-bottom: 24px;
+    background: #ffffff;
+    border: 1px solid #e8e6e2;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(37, 37, 69, 0.06);
+}
+
+.reply-original-card h3 {
+    margin-bottom: 18px;
+    color: #363795;
+    font-size: 20px;
+}
+
+.reply-original-card p {
+    margin-bottom: 12px;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.reply-original-card strong {
+    color: #252545;
+}
+
+/* ================= REPLY FORM ================= */
+
+.reply-form {
+    padding: 28px;
+    background: #ffffff;
+    border: 1px solid #e8e6e2;
+    border-radius: 14px;
+    box-shadow: 0 5px 18px rgba(37, 37, 69, 0.06);
+}
+
+.reply-form label {
+    display: block;
+    margin-bottom: 10px;
+    font-size: 15px;
+    font-weight: 600;
+}
+
+.reply-form textarea {
+    display: block;
+    width: 100%;
+    min-height: 150px;
+    padding: 14px;
+    border: 1px solid #d9d8df;
+    border-radius: 9px;
+    outline: none;
+    background: #fbfaf8;
+    color: #252545;
+    font-family: "DM Sans", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    resize: vertical;
+    transition: border-color 0.3s ease;
+}
+
+.reply-form textarea:focus {
+    border-color: #363795;
+}
+
+.reply-form textarea::placeholder {
+    color: #9999a8;
+}
+
+/* ================= BUTTON ================= */
+
+.reply-form button {
+    margin-top: 18px;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    background: #363795;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.reply-form button:hover {
+    background: #252545;
+}
+
+/* ================= BACK LINK ================= */
+
+.reply-back-link {
+    display: inline-block;
+    margin-top: 22px;
+    color: #363795;
+    font-size: 14px;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.reply-back-link:hover {
+    text-decoration: underline;
+}
+
+/* ================= RESPONSIVE ================= */
+
+@media (max-width: 650px) {
+
+    .reply-page {
+        padding: 30px 15px;
+    }
+
+    .reply-container h1 {
+        font-size: 27px;
+    }
+
+    .reply-original-card,
+    .reply-form {
+        padding: 20px;
+    }
+
+    .reply-original-card h3 {
+        font-size: 18px;
+    }
+
+    .reply-form button {
+        width: 100%;
+    }
+
+}

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Edit Book | Hamro Kitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/editBook.css}">
+
+</head>
+
+<body>
+
+<div class="edit-container">
+
+    <a th:href="@{/myListings}" class="back-link">
+        ← Back to My Listings
+    </a>
+
+    <div class="edit-card">
+
+        <h1>Edit Book</h1>
+
+        <p class="subtitle">
+            Update the information about your book.
+        </p>
+
+
+        <form th:action="@{/editBook}"
+              th:object="${book}"
+              method="post"
+              enctype="multipart/form-data">
+
+            <input type="hidden"
+                   th:field="*{id}">
+
+
+            <label for="title">
+                Book Title
+            </label>
+
+            <input type="text"
+                   id="title"
+                   th:field="*{title}"
+                   required>
+
+
+            <label for="author">
+                Author
+            </label>
+
+            <input type="text"
+                   id="author"
+                   th:field="*{author}"
+                   required>
+
+
+            <label for="category">
+                Category
+            </label>
+
+            <input type="text"
+                   id="category"
+                   th:field="*{category}"
+                   required>
+
+
+            <label for="semester">
+                Semester
+            </label>
+
+            <input type="text"
+                   id="semester"
+                   th:field="*{semester}">
+
+
+            <label for="subject">
+                Subject
+            </label>
+
+            <input type="text"
+                   id="subject"
+                   th:field="*{subject}">
+
+
+            <label for="institution">
+                Institution
+            </label>
+
+            <input type="text"
+                   id="institution"
+                   th:field="*{institution}">
+
+
+            <label for="condition">
+                Condition
+            </label>
+
+            <input type="text"
+                   id="condition"
+                   th:field="*{condition}"
+                   required>
+
+
+            <label for="price">
+                Price (NPR)
+            </label>
+
+            <input type="number"
+                   id="price"
+                   th:field="*{price}"
+                   step="0.01"
+                   min="0"
+                   required>
+
+
+            <label for="description">
+                Description
+            </label>
+
+            <textarea id="description"
+                      th:field="*{description}"
+                      rows="5"></textarea>
+
+
+            <label for="imageFile">
+                Change Book Image
+            </label>
+
+            <input type="file"
+                   id="imageFile"
+                   name="imageFile"
+                   accept="image/*">
+
+
+            <button type="submit">
+                Update Book
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>

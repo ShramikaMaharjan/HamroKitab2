@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Hamro Kitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/login.css}">
+
+    <!-- Font Awesome for the logout icon -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+
+<body>
+
+<div class="login-container">
+
+    <h1>Welcome Back</h1>
+
+    <p>Log in to your Hamro Kitab account.</p>
+
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <p th:if="${param.logout}" style="color: green;">
+        You have been logged out.
+    </p>
+
+    <form th:action="@{/loginUser}" method="post">
+
+        <label>Email</label>
+
+        <input
+                type="email"
+                name="email"
+                required>
+
+        <label>Password</label>
+
+        <input
+                type="password"
+                name="password"
+                required>
+
+        <button type="submit">
+            Log In
+        </button>
+
+    </form>
+
+    <p>
+        Don't have an account?
+        <a th:href="@{/register}">
+            Create Account
+        </a>
+    </p>
+
+    <!-- Logout link (only shown if a user is actually logged in) -->
+    <p th:if="${session.loggedInUser != null}">
+        <a th:href="@{/logoutUser}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout
+        </a>
+    </p>
+
+</div>
+
+</body>
+
+</html>

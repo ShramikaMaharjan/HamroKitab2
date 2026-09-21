@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Manage Books - HamroKitab</title>
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fbfaf8;
+            color: #252545;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .header {
+            background: white;
+            border-bottom: 1px solid #e8e7ef;
+        }
+
+        .header-container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 15px 25px;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo img {
+            width: 125px;
+        }
+
+        .back {
+            color: #363795;
+            font-size: 13px;
+            font-weight: bold;
+        }
+
+        .container {
+            max-width: 1150px;
+            margin: auto;
+            padding: 40px 25px;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .subtitle {
+            color: #77778d;
+            font-size: 14px;
+            margin-bottom: 25px;
+        }
+
+        .books {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .book-card {
+            background: white;
+            border: 1px solid #e8e7ef;
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .book-image {
+            width: 100%;
+            height: 210px;
+            background: #f1f0f7;
+
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            color: #88889b;
+            font-size: 12px;
+        }
+
+        .book-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .book-info {
+            padding: 18px;
+        }
+
+        .book-info h2 {
+            font-size: 17px;
+            margin-bottom: 5px;
+        }
+
+        .author {
+            color: #77778d;
+            font-size: 12px;
+            margin-bottom: 12px;
+        }
+
+        .seller {
+            color: #62627d;
+            font-size: 12px;
+            margin-bottom: 5px;
+        }
+
+        .price {
+            color: #363795;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .delete-btn {
+            width: 100%;
+            padding: 10px;
+
+            border: 1px solid #e2bfc5;
+            border-radius: 8px;
+
+            background: #fff7f8;
+            color: #b34c60;
+
+            font-size: 12px;
+            font-weight: bold;
+
+            cursor: pointer;
+        }
+
+        .delete-btn:hover {
+            background: #b34c60;
+            color: white;
+        }
+
+        .empty {
+            background: white;
+            border: 1px solid #e8e7ef;
+            border-radius: 15px;
+            padding: 40px;
+            text-align: center;
+            color: #77778d;
+        }
+
+        @media (max-width: 850px) {
+
+            .books {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 550px) {
+
+            .container {
+                padding: 30px 18px;
+            }
+
+            .books {
+                grid-template-columns: 1fr;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+
+<header class="header">
+
+    <div class="header-container">
+
+        <a th:href="@{/}"
+           class="logo">
+
+            <img th:src="@{/images/logo.png}"
+                 alt="HamroKitab Logo">
+
+        </a>
+
+        <a th:href="@{/admin}"
+           class="back">
+
+            ← Dashboard
+
+        </a>
+
+    </div>
+
+</header>
+
+
+<main class="container">
+
+    <h1>Manage Books</h1>
+
+    <p class="subtitle">
+        View and manage books listed on HamroKitab.
+    </p>
+
+
+    <div class="books"
+         th:if="${books != null and !#lists.isEmpty(books)}">
+
+
+        <div class="book-card"
+             th:each="book : ${books}">
+
+
+            <div class="book-image">
+
+                <img th:if="${book.image != null}"
+                     th:src="'data:' + ${book.imageType} + ';base64,' + ${book.imageBase64}"
+                     alt="Book Image">
+
+                <span th:if="${book.image == null}">
+                    No Image
+                </span>
+
+            </div>
+
+
+            <div class="book-info">
+
+                <h2 th:text="${book.title}">
+                    Book Title
+                </h2>
+
+                <p class="author"
+                   th:text="${book.author}">
+                    Author
+                </p>
+
+                <p class="seller"
+                   th:if="${book.owner != null}"
+                   th:text="'Seller: ' + ${book.owner.username}">
+                    Seller
+                </p>
+
+                <p class="price">
+
+                    Rs.
+
+                    <span th:text="${book.price}">
+                        500
+                    </span>
+
+                </p>
+
+
+                <form th:action="@{/admin/books/delete/{id}(id=${book.id})}"
+                      method="post"
+                      onsubmit="return confirm('Are you sure you want to remove this book?');">
+
+                    <button type="submit"
+                            class="delete-btn">
+
+                        Remove Book
+
+                    </button>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="empty"
+         th:if="${books == null or #lists.isEmpty(books)}">
+
+        No books are currently listed.
+
+    </div>
+
+</main>
+
+</body>
+
+</html>

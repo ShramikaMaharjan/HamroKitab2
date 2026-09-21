@@ -1,0 +1,133 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #fbfaf8;
+    color: #252545;
+}
+
+.messages-container {
+    width: 90%;
+    max-width: 900px;
+    margin: 50px auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 30px;
+    color: #363795;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.page-header {
+    margin-bottom: 30px;
+}
+
+.page-header h1 {
+    font-size: 36px;
+    margin-bottom: 6px;
+}
+
+.page-header p {
+    color: #777;
+}
+
+.message-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.message-card {
+    background: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 8px 30px rgba(37, 37, 69, 0.08);
+}
+
+.message-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eee;
+}
+
+.label {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 4px;
+}
+
+.message-header h3 {
+    font-size: 19px;
+}
+
+.book-badge {
+    background: #f0efff;
+    color: #363795;
+    padding: 8px 12px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.message-content {
+    padding: 20px 0;
+}
+
+.message-content p {
+    line-height: 1.7;
+    color: #444;
+}
+
+.message-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    color: #777;
+    font-size: 14px;
+}
+
+.message-footer a {
+    color: #363795;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.message-footer a:hover {
+    text-decoration: underline;
+}
+
+.empty-message {
+    background: white;
+    border-radius: 16px;
+    padding: 60px 30px;
+    text-align: center;
+    box-shadow: 0 8px 30px rgba(37, 37, 69, 0.08);
+}
+
+.empty-icon {
+    font-size: 45px;
+    margin-bottom: 15px;
+}
+
+.empty-message h2 {
+    margin-bottom: 8px;
+}
+
+.empty-message p {
+    color: #777;
+    max-width: 450px;
+    margin: 0 auto;
+    line-height: 1.6;
+}

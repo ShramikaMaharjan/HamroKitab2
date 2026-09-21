@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #fbfaf8;
+    color: #252545;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.login-container {
+    width: 100%;
+    max-width: 440px;
+    margin: 30px 20px;
+    padding: 45px 40px;
+    background: #ffffff;
+    border-radius: 20px;
+    box-shadow: 0 10px 35px rgba(37, 37, 69, 0.08);
+}
+
+.login-container h1 {
+    font-family: "Playfair Display", serif;
+    font-size: 34px;
+    text-align: center;
+    margin-bottom: 10px;
+    color: #252545;
+}
+
+.login-container > p {
+    text-align: center;
+    color: #77778a;
+    font-size: 14px;
+    margin-bottom: 25px;
+}
+
+.login-container form {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-container label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #252545;
+}
+
+.login-container input {
+    width: 100%;
+    padding: 13px 14px;
+    margin-bottom: 20px;
+    border: 1px solid #dedee7;
+    border-radius: 9px;
+    font-family: "DM Sans", sans-serif;
+    font-size: 14px;
+    color: #252545;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.login-container input:focus {
+    border-color: #363795;
+}
+
+.login-container button {
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 9px;
+    background: #363795;
+    color: #ffffff;
+    font-family: "DM Sans", sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.login-container button:hover {
+    background: #252545;
+}
+
+.login-container a {
+    color: #363795;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-container a:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+
+    .login-container {
+        padding: 35px 25px;
+    }
+
+    .login-container h1 {
+        font-size: 28px;
+    }
+
+}

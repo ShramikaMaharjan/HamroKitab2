@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <title> Wishlist</title>
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/wishlist.css}">
+    <link rel="stylesheet" th:href="@{/css/menuresponsive.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+          
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+      <div class="nav-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a th:href="@{/}">
+                <img th:src="@{/images/logo.png}"
+                     alt="HamroKitab Logo"
+                     class="logo-img">
+            </a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/product}">Products</a></li>
+                <li><a th:href="@{/category}">Category</a></li>
+                <li><a th:href="@{/about}">About Us</a></li>
+                <li><a th:href="@{/seller}">Become a seller</a></li>
+            </ul>
+        </nav>
+
+        <!-- Search -->
+        <div class="nav-search">
+
+            <input type="text"
+                   placeholder="Search books..."
+                   aria-label="Search books">
+
+            <button type="button" aria-label="Search">
+                <i class="fas fa-search"></i>
+            </button>
+
+        </div>
+
+        <!-- Right Navigation -->
+        <div class="nav-right">
+
+            <!-- Cart -->
+            <div class="nav-cart">
+
+                <a href="cart.html" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+
+            </div>
+
+            <!-- User -->
+            <div class="user-menu">
+
+                <i class="fa-solid fa-user"
+                   id="user-icon"
+                   aria-label="User menu"
+                   role="button"
+                   tabindex="0"></i>
+
+                <div class="dropdown-menu" id="dropdown">
+
+                    <a href="esign.html">Log In</a>
+                    <a href="#">My Profile</a>
+                    <a href="#">Orders</a>
+
+                    <a th:href="@{/wishlist}">
+                        Wishlist
+                    </a>
+
+                    <a href="#">Logout</a>
+
+                </div>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            <div class="nav-icon"
+                 id="menu-icon"
+                 aria-label="Open navigation menu"
+                 role="button"
+                 tabindex="0">
+
+                <i class="fa-solid fa-bars"></i>
+
+            </div>
+
+        </div>
+
+    </div>
+    
+
+</header>
+
+<!-- ================= WISHLIST PAGE ================= -->
+
+<main class="wishlist-page">
+
+    
+    <section class="wishlist-header">
+
+        <h1>My Wishlist</h1>
+
+        <p>
+            Books you've saved for later.
+        </p>
+
+    </section>
+
+
+    <!-- ================= WISHLIST BOOKS ================= -->
+
+    <section class="wishlist-grid">
+
+        
+        <div class="wishlist-message"
+             th:if="${wishlistMessage != null}"
+             th:text="${wishlistMessage}">
+            Book has been removed from your wishlist.
+        </div>
+
+
+        <div class="wishlist-card"
+             th:each="item : ${wishlist}">
+
+            <!-- Book Image -->
+
+            <div class="wishlist-image">
+
+            <span class="condition-badge"
+                  th:text="${item.book.condition}">
+                Used
+            </span>
+
+                <img th:if="${item.book.imageBase64 != null}"
+                     th:src="'data:' + ${item.book.imageType} + ';base64,' + ${item.book.imageBase64}"
+                     alt="Book Image">
+
+                <p th:if="${item.book.imageBase64 == null}">
+                    No Image
+                </p>
+
+            </div>
+
+
+            <!-- Book Information -->
+
+            <div class="wishlist-info">
+
+            <span class="wishlist-category"
+                  th:text="${item.book.category}">
+                Category
+            </span>
+
+                <h3 th:text="${item.book.title}">
+                    Book Title
+                </h3>
+
+                <p class="wishlist-author"
+                   th:text="'by ' + ${item.book.author}">
+                    by Author
+                </p>
+
+                <p class="wishlist-description"
+                   th:text="${item.book.description}">
+                    Book description
+                </p>
+
+                <p class="wishlist-seller">
+
+                    Seller:
+                    <span th:text="${item.book.owner.username}">
+                    Seller
+                </span>
+
+                </p>
+
+
+                <div class="wishlist-bottom">
+
+                <span class="wishlist-price"
+                      th:text="'Rs. ' + ${item.book.price}">
+                    Rs. 0
+                </span>
+
+
+                    <div class="wishlist-actions">
+
+                        <!-- View Details -->
+
+                        <a th:href="@{'/bookdetail/' + ${item.book.id}}"
+                           class="view-btn">
+                            View Details
+                        </a>
+
+
+                        <!-- Remove -->
+
+                        <form th:action="@{/wishlist/remove}"
+                              method="post">
+
+                            <input type="hidden"
+                                   name="bookId"
+                                   th:value="${item.book.id}">
+
+                            <button type="submit"
+                                    class="remove-btn"
+                                    title="Remove from Wishlist">
+
+                                <i class="fa-solid fa-trash"></i>
+
+                            </button>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- ================= EMPTY WISHLIST ================= -->
+
+        <div class="empty-wishlist"
+             th:if="${wishlist == null or wishlist.isEmpty()}">
+
+            <div class="empty-icon">
+
+                <i class="fa-regular fa-heart"></i>
+
+            </div>
+
+            <h2>Your Wishlist is Empty</h2>
+
+            <p>
+                Save books you love and come back to them later.
+            </p>
+
+            <a th:href="@{/product}"
+               class="browse-btn">
+
+                Browse Books
+
+            </a>
+
+        </div>
+
+    </section>
+    
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+
+<footer class="footer">
+
+    
+    <div class="footer-container">
+
+        <div class="footer-about">
+
+            <h3>HamroKitab</h3>
+
+            <p>
+                Your one-stop platform for buying and selling
+                second-hand books. Empowering readers and
+                promoting reuse.
+            </p>
+
+        </div>
+
+
+        <div class="footer-links">
+
+            <h4>Quick Links</h4>
+
+            <ul>
+
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/category}">Categories</a></li>
+                <li><a th:href="@{/product}">Products</a></li>
+                <li><a th:href="@{/about}">About Us</a></li>
+                <li><a th:href="@{/seller}">Become a Seller</a></li>
+
+            </ul>
+
+        </div>
+
+
+        <div class="footer-contact">
+
+            <h4>Contact</h4>
+
+            <p>Email: support@hamrokitab.com</p>
+            <p>Phone: +977-9800000000</p>
+            <p>Address: Kathmandu, Nepal</p>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        <p>
+            &copy; 2026 HamroKitab. All rights reserved.
+        </p>
+
+    </div>
+    
+
+</footer>
+
+<!-- JavaScript -->
+
+<script src="assets/js/user.js"></script>
+
+</body>
+
+</html>

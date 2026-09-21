@@ -1,0 +1,189 @@
+<!DOCTYPE html> <html lang="en" xmlns:th="http://www.thymeleaf.org"> <head> <meta charset="UTF-8"> <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seller Orders - HamroKitab</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #fbfaf8;
+            color: #252545;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            margin-bottom: 25px;
+        }
+
+        .order {
+            background: white;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-radius: 12px;
+            box-shadow: 0 3px 15px rgba(0, 0, 0, 0.07);
+        }
+
+        h2 {
+            color: #363795;
+            margin-bottom: 15px;
+        }
+
+        p {
+            margin: 10px 0;
+            line-height: 1.6;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #363795;
+        }
+
+        .buttons {
+            margin-top: 20px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            padding: 9px 15px;
+            margin: 5px 5px 5px 0;
+            background: #363795;
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+        }
+
+        .buttons button {
+            display: inline-block;
+            padding: 9px 15px;
+            margin: 5px 5px 5px 0;
+            background: #363795;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .buttons button:hover {
+            background: #252545;
+        }
+        
+        .buttons a:hover {
+            background: #252545;
+        }
+
+        .empty-message {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+        }
+    </style>
+</head> <body> <div class="container">
+    <h1>Orders for My Books</h1>
+
+    <div class="empty-message" th:if="${#lists.isEmpty(orders)}">
+        <p>No orders have been placed for your books.</p>
+    </div>
+
+    <div class="order" th:each="order : ${orders}">
+
+        <h2 th:text="${order.book.title}">
+            Book Title
+        </h2>
+
+        <p>
+            <strong>Order ID:</strong>
+            <span th:text="${order.id}">1</span>
+        </p>
+
+        <p>
+            <strong>Buyer Name:</strong>
+            <span th:text="${order.buyerName}">
+            Buyer Name
+        </span>
+        </p>
+
+        <p>
+            <strong>Buyer Email:</strong>
+            <span th:text="${order.buyer.email}">
+            buyer@email.com
+        </span>
+        </p>
+
+        <p>
+            <strong>Phone Number:</strong>
+            <span th:text="${order.phoneNumber}">
+            9800000000
+        </span>
+        </p>
+
+        <p>
+            <strong>Delivery Address:</strong>
+            <span th:text="${order.deliveryAddress}">
+            Kathmandu
+        </span>
+        </p>
+
+        <p>
+            <strong>Price:</strong>
+            Rs. <span th:text="${order.price}">500</span>
+        </p>
+
+        <p>
+            <strong>Order Date:</strong>
+            <span th:text="${#temporals.format(order.orderDate, 'yyyy-MM-dd HH:mm')}">
+            2026-09-19 20:00
+        </span>
+        </p>
+
+        <p>
+            <strong>Status:</strong>
+            <span class="status" th:text="${order.status}">
+            PENDING
+        </span>
+        </p>
+
+        <div class="buttons">
+
+            <form th:if="${order.status == 'PENDING'}"
+                  th:action="@{/order/accept/{id}(id=${order.id})}"
+                  method="post"
+                  style="display: inline;">
+
+                <button type="submit">
+                    Accept Order
+                </button>
+
+            </form>
+
+
+            <form th:if="${order.status == 'ACCEPTED'}"
+                  th:action="@{/order/onTheWay/{id}(id=${order.id})}"
+                  method="post"
+                  style="display: inline;">
+
+                <button type="submit">
+                    Mark On the Way
+                </button>
+
+            </form>
+
+
+            <form th:if="${order.status == 'ON_THE_WAY'}"
+                  th:action="@{/order/delivered/{id}(id=${order.id})}"
+                  method="post"
+                  style="display: inline;">
+
+                <button type="submit">
+                    Mark Delivered
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+</div> </body> </html>

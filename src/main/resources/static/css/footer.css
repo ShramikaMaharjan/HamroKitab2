@@ -1,0 +1,319 @@
+.footer {
+    width: 100%;
+
+    background-color: #173B73;
+
+    color: #FFFFFF;
+
+    padding: 50px 5% 20px;
+}
+
+.footer-container {
+    max-width: 1150px;
+    margin: auto;
+
+    display: flex;
+    justify-content: space-between;
+
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.footer-about,
+.footer-links,
+.footer-contact {
+    flex: 1 1 250px;
+}
+
+.footer h3 {
+    color: #FFFFFF;
+
+    font-size: 25px;
+
+    margin-bottom: 15px;
+}
+
+.footer h4 {
+    color: #FFB82E;
+
+    font-size: 17px;
+
+    margin-bottom: 15px;
+}
+
+.footer p,
+.footer a {
+    color: #dceaff;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+
+    text-decoration: none;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links li {
+    margin-bottom: 7px;
+}
+
+.footer-links a:hover {
+    color: #FFB82E;
+}
+
+.footer-bottom {
+    max-width: 1150px;
+    margin: 35px auto 0;
+
+    padding-top: 18px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+
+    text-align: center;
+}
+
+.footer-bottom p {
+    color: #aac4df;
+
+    font-size: 12px;
+}
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1000px) {
+
+    .nav-menu ul {
+        gap: 15px;
+    }
+
+    .nav-menu a {
+        font-size: 14px;
+    }
+
+    .nav-search input {
+        width: 140px;
+    }
+
+}
+
+
+/* TABLET / MOBILE */
+
+@media (max-width: 768px) {
+
+    /* NAVBAR */
+
+    .nav-container {
+        min-height: 65px;
+
+        flex-direction: row;
+
+        width: 90%;
+    }
+
+    .nav-icon {
+        display: block;
+    }
+
+    .nav-menu {
+        display: none;
+
+        position: absolute;
+
+        top: 65px;
+        left: 0;
+
+        width: 100%;
+
+        background-color: #FFFFFF;
+
+        border-top: 1px solid #EAF5FF;
+
+        box-shadow: 0 10px 20px rgba(23, 59, 115, 0.08);
+    }
+
+    .nav-menu.active {
+        display: block;
+    }
+
+    .nav-menu ul {
+        flex-direction: column;
+
+        gap: 0;
+
+        padding: 15px 0;
+    }
+
+    .nav-menu li {
+        width: 100%;
+
+        text-align: center;
+    }
+
+    .nav-menu a {
+        display: block;
+
+        padding: 12px;
+    }
+
+    .nav-search {
+        display: none;
+    }
+
+    .nav-right {
+        margin-left: auto;
+    }
+
+    /* HERO */
+
+    .banner-img {
+        height: 350px;
+    }
+
+    /* SECTIONS */
+
+    .section {
+        padding: 50px 15px;
+    }
+
+    .section h2,
+    .testimonial-section h2 {
+        font-size: 25px;
+    }
+
+    /* COLLECTIONS */
+
+    .collection-card {
+        width: 280px;
+    }
+
+    /* BEST SELLERS */
+
+    .best-seller-row {
+        gap: 20px;
+    }
+
+    .best-seller-row img {
+        width: 150px;
+        height: 220px;
+    }
+
+    /* DISCOUNT */
+
+    .discount-section {
+        padding: 50px 20px;
+    }
+
+    .discount-row {
+        gap: 25px;
+    }
+
+    .discount-row img {
+        width: 110px;
+        height: 165px;
+    }
+
+    .discount-text h3 {
+        font-size: 30px;
+    }
+
+    /* SIGNUP */
+
+    .signup-container {
+        flex-direction: column;
+
+        padding: 30px 25px;
+
+        gap: 35px;
+    }
+
+    .signup-left,
+    .signup-right {
+        width: 100%;
+    }
+
+    .signup-left h2 {
+        font-size: 25px;
+    }
+
+    /* TESTIMONIAL */
+
+    .testimonial-section {
+        padding: 55px 20px;
+    }
+
+}
+
+
+/* SMALL MOBILE */
+
+@media (max-width: 480px) {
+
+    .logo-img {
+        width: 42px;
+    }
+
+    .nav-right {
+        gap: 8px;
+    }
+
+    .nav-cart a {
+        font-size: 16px;
+    }
+
+    #user-icon {
+        font-size: 16px;
+    }
+
+    .banner-img {
+        height: 280px;
+    }
+
+    .collection-card {
+        width: 100%;
+        max-width: 300px;
+    }
+
+    .collection-card img {
+        height: 250px;
+    }
+
+    .best-seller-row img {
+        width: 135px;
+        height: 195px;
+    }
+
+    .discount-row {
+        flex-direction: row;
+    }
+
+    .discount-text {
+        width: 100%;
+        order: 3;
+    }
+
+    .discount-row img {
+        width: 105px;
+        height: 155px;
+    }
+
+    .signup-benefits {
+        padding: 40px 15px;
+    }
+
+    .signup-container {
+        padding: 25px 18px;
+    }
+
+    .testimonial-card {
+        width: 100%;
+        max-width: 320px;
+    }
+
+}

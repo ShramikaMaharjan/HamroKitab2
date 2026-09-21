@@ -1,0 +1,223 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Messages | HamroKitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/message.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="message-navbar">
+
+    <a th:href="@{/}" class="message-logo">
+
+        <img th:src="@{/images/logo.png}"
+             alt="HamroKitab Logo">
+
+    </a>
+
+    <a th:href="@{/}" class="back-home">
+
+        <i class="fa-solid fa-arrow-left"></i>
+
+        Home
+
+    </a>
+
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="message-container">
+
+    <!-- ================= HEADING ================= -->
+
+    <div class="message-heading">
+
+        <div>
+
+            <p class="small-heading">
+                YOUR COMMUNICATION
+            </p>
+
+            <h1>Messages</h1>
+
+            <p class="heading-description">
+                Keep track of your conversations with buyers and sellers.
+            </p>
+
+        </div>
+
+        <a th:href="@{/sentMessages}"
+           class="message-switch-btn">
+
+            <i class="fa-regular fa-paper-plane"></i>
+
+            Sent Messages
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= EMPTY STATE ================= -->
+
+    <div class="empty-message"
+         th:if="${#lists.isEmpty(messages)}">
+
+        <div class="empty-icon">
+
+            <i class="fa-regular fa-comments"></i>
+
+        </div>
+
+        <h2>No conversations yet</h2>
+
+        <p>
+            Your conversations about books will appear here.
+        </p>
+
+        <a th:href="@{/product}"
+           class="browse-btn">
+
+            Browse Books
+
+        </a>
+
+    </div>
+
+
+    <!-- ================= MESSAGE LIST ================= -->
+
+    <div class="message-list"
+         th:unless="${#lists.isEmpty(messages)}">
+
+
+        <!-- ================= MESSAGE CARD ================= -->
+
+        <div class="message-card"
+             th:each="msg : ${messages}">
+
+
+            <!-- TOP SECTION -->
+
+            <div class="message-card-top">
+
+                <div class="person-info">
+
+                    <div class="person-avatar">
+
+                        <i class="fa-solid fa-user"></i>
+
+                    </div>
+
+
+                    <div>
+
+                        <h3 th:text="${msg.sender.username}">
+                            Sender Name
+                        </h3>
+
+                        <p th:text="${msg.sender.email}">
+                            sender@email.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <span class="message-label">
+
+                    <i class="fa-regular fa-comments"></i>
+
+                    Conversation
+
+                </span>
+
+            </div>
+
+
+            <!-- BOOK -->
+
+            <div class="book-reference">
+
+                <i class="fa-solid fa-book"></i>
+
+                <div>
+
+                    <span>Regarding book</span>
+
+                    <h4 th:text="${msg.book.title}">
+                        Book Title
+                    </h4>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE PREVIEW -->
+
+            <div class="message-content">
+
+                <p class="content-label">
+                    Latest message
+                </p>
+
+                <p th:text="${msg.message}">
+                    Message content
+                </p>
+
+            </div>
+
+
+            <!-- BOTTOM -->
+
+            <div class="message-card-bottom">
+
+                <span class="message-email">
+
+                    <i class="fa-regular fa-envelope"></i>
+
+                    <span th:text="${msg.sender.email}">
+                        Email
+                    </span>
+
+                </span>
+
+
+                <a th:href="@{/conversation/{id}(id=${msg.id})}"
+                   class="reply-link">
+
+                    Open Conversation
+
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>
+

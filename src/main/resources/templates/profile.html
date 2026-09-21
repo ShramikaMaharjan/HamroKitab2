@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Profile | HamroKitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/profile.css}">
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+</head>
+
+<body>
+
+<!--  Header -->
+
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a th:href="@{/}">
+                <img
+                        th:src="@{/images/logo.png}"
+                        alt="HamroKitab Logo"
+                        class="logo-img"
+                >
+            </a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <ul>
+                <li>
+                    <a th:href="@{/}">Home</a>
+                </li>
+                <li>
+                    <a th:href="@{/product}">Products</a>
+                </li>
+                <li>
+                    <a th:href="@{/category}">Category</a>
+                </li>
+                <li>
+                    <a th:href="@{/about}">About Us</a>
+                </li>
+                <li>
+                    <a th:href="@{/addBook}">
+                        <i class="fa-solid fa-plus"></i>
+                        Sell a Book
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Right Navigation -->
+        <div class="nav-right">
+
+            <!-- Cart -->
+            <div class="nav-cart">
+                <a th:href="@{/cart}" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+
+            <!-- ================= USER ================= -->
+
+            <!-- User icon is shown ONLY when logged in -->
+            <div class="user-menu"
+                 th:if="${session.loggedInUser != null}">
+
+                <i
+                        class="fa-solid fa-user"
+                        id="user-icon"
+                        aria-label="User menu"
+                        role="button"
+                        tabindex="0">
+                </i>
+
+                <div class="dropdown-menu" id="dropdown">
+
+                    <!-- Username -->
+                    <p class="welcome-user">
+                        Hello,
+                        <span th:text="${session.loggedInUser.username}"></span>
+                    </p>
+
+                    <!-- Profile -->
+                    <a th:href="@{/profile}">
+                        <i class="fa-solid fa-id-card"></i>
+                        My Profile
+                    </a>
+
+                    <!-- Buyer Orders -->
+                    <a th:href="@{/myOrders}">
+                        <i class="fa-solid fa-box"></i>
+                        My Orders
+                    </a>
+
+                    <!-- Seller Orders -->
+                    <a th:href="@{/sellerorders}">
+                        <i class="fa-solid fa-truck"></i>
+                        Seller Orders
+                    </a>
+
+                    <!-- My Listings -->
+                    <a th:href="@{/myListings}">
+                        <i class="fa-solid fa-book-open"></i>
+                        My Listings
+                    </a>
+
+                    <!-- Inbox -->
+                    <a th:href="@{/messages}">
+                        <i class="fa-solid fa-inbox"></i>
+                        Inbox
+                    </a>
+
+                    <!-- Sent Messages -->
+                    <a th:href="@{/sentMessages}">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Sent Messages
+                    </a>
+
+                    <!-- Wishlist -->
+                    <a th:href="@{/wishlist}">
+                        <i class="fa-solid fa-heart"></i>
+                        Wishlist
+                    </a>
+
+                    <!-- Logout -->
+                    <a th:href="@{/logoutUser}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+
+                </div>
+
+            </div>
+
+            <!-- Login / Register only for logged-out users -->
+            <div class="auth-links"
+                 th:if="${session.loggedInUser == null}">
+
+                <a th:href="@{/register}">
+                    Create Account
+                </a>
+
+                <a th:href="@{/login}">
+                    Log In
+                </a>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            <div
+                    class="nav-icon"
+                    id="menu-icon"
+                    aria-label="Open navigation menu"
+                    role="button"
+                    tabindex="0"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </div>
+        <!-- /.nav-right -->
+
+    </div>
+    <!-- /.nav-container -->
+
+</header>
+
+<main class="profile-page">
+
+    <!-- ================= PROFILE INTRO ================= -->
+
+    <section class="profile-intro">
+
+        <div class="profile-avatar">
+
+            <span
+                    th:text="${#strings.substring(user.username, 0, 1).toUpperCase()}">
+                U
+            </span>
+
+        </div>
+
+        <div class="profile-heading">
+
+            <p class="profile-eyebrow">
+                MY PROFILE
+            </p>
+
+            <h1 th:text="${user.username}">
+                Username
+            </h1>
+
+            <p th:text="${user.email}">
+                email@example.com
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= ACCOUNT INFORMATION ================= -->
+
+    <section class="profile-card">
+
+        <div class="section-heading">
+
+            <div>
+                <span>ACCOUNT</span>
+
+                <h2>Account Information</h2>
+            </div>
+
+        </div>
+
+
+        <div class="account-grid">
+
+            <div class="account-item">
+
+                <label>Username</label>
+
+                <p th:text="${user.username}">
+                    Username
+                </p>
+
+            </div>
+
+
+            <div class="account-item">
+
+                <label>Email Address</label>
+
+                <p th:text="${user.email}">
+                    email@example.com
+                </p>
+
+            </div>
+
+
+            <div class="account-item">
+
+                <label>Account Type</label>
+
+                <p>Student</p>
+
+            </div>
+
+
+            <div class="account-item">
+
+                <label>Email Verification</label>
+
+                <p
+                        class="verified"
+                        th:if="${user.verified}">
+                    <i class="fa-solid fa-circle-check"></i>
+                    Verified
+                </p>
+
+                <p
+                        class="not-verified"
+                        th:unless="${user.verified}">
+                    Not Verified
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= QUICK ACCESS ================= -->
+
+    <section class="quick-access">
+
+        <div class="section-heading">
+
+            <div>
+                <span>QUICK ACCESS</span>
+
+                <h2>Your HamroKitab</h2>
+            </div>
+
+        </div>
+
+
+        <div class="quick-grid">
+
+
+            <!-- My Listings -->
+
+            <a th:href="@{/myListings}" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <h3>My Listings</h3>
+
+                    <p>
+                        Manage the books you have listed for sale.
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+            </a>
+
+
+            <!-- My Orders -->
+
+            <a th:href="@{/myOrders}" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-solid fa-box"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <h3>My Orders</h3>
+
+                    <p>
+                        View the books you have purchased.
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+            </a>
+
+
+            <!-- Seller Orders -->
+
+            <a th:href="@{/sellerorders}" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-solid fa-truck"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <h3>Seller Orders</h3>
+
+                    <p>
+                        Manage orders placed for your books.
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+            </a>
+
+
+            <!-- Inbox -->
+
+            <a th:href="@{/messages}" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-solid fa-inbox"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <h3>Inbox</h3>
+
+                    <p>
+                        See messages from students interested in your books.
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+            </a>
+
+
+            <!-- Sent Messages -->
+
+            <a th:href="@{/sentMessages}" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <h3>Sent Messages</h3>
+
+                    <p>
+                        View messages you have sent to sellers.
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+            </a>
+
+
+            <!-- Wishlist -->
+
+            <a th:href="@{/wishlist}" class="quick-card">
+
+                <div class="quick-icon">
+                    <i class="fa-solid fa-heart"></i>
+                </div>
+
+                <div class="quick-content">
+
+                    <h3>Wishlist</h3>
+
+                    <p>
+                        Find the books you saved for later.
+                    </p>
+
+                </div>
+
+                <i class="fa-solid fa-arrow-right card-arrow"></i>
+
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- ================= SELL A BOOK ================= -->
+
+    <section class="sell-banner">
+
+        <div>
+
+            <span class="banner-label">
+                HAVE A BOOK YOU NO LONGER NEED?
+            </span>
+
+            <h2>
+                Give your book another reader.
+            </h2>
+
+            <p>
+                List your old academic books on HamroKitab
+                and connect with other students.
+            </p>
+
+        </div>
+
+
+        <a th:href="@{/addBook}" class="sell-button">
+            <i class="fa-solid fa-plus"></i>
+            Sell a Book
+        </a>
+
+    </section>
+
+
+    <!-- ================= LOGOUT ================= -->
+
+    <div class="profile-logout">
+
+        <a th:href="@{/logoutUser}">
+            <i class="fa-solid fa-right-from-bracket"></i>
+            Logout from HamroKitab
+        </a>
+
+    </div>
+
+</main>
+
+
+</body>
+</html>

@@ -1,0 +1,93 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "DM Sans", Arial, sans-serif;
+    background: #fbfaf8;
+    color: #252545;
+}
+
+.contact-container {
+    width: 90%;
+    max-width: 700px;
+    margin: 50px auto;
+}
+
+.back-link {
+    display: inline-block;
+    margin-bottom: 25px;
+    color: #363795;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.contact-card {
+    background: white;
+    padding: 40px;
+    border-radius: 18px;
+    box-shadow: 0 8px 30px rgba(37, 37, 69, 0.08);
+}
+
+.contact-card h1 {
+    font-size: 32px;
+    margin-bottom: 20px;
+}
+
+.book-title {
+    color: #777;
+    margin-bottom: 8px;
+}
+
+.contact-card h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.seller {
+    margin-bottom: 30px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+textarea {
+    width: 100%;
+    min-height: 150px;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 15px;
+    margin-bottom: 20px;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #363795;
+}
+
+button {
+    border: none;
+    background: #363795;
+    color: white;
+    padding: 13px 24px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+button:hover {
+    opacity: 0.9;
+}

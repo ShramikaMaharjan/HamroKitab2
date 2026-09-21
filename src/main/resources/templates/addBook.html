@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Sell a Book | Hamro Kitab</title>
+
+    <link rel="stylesheet"
+          th:href="@{/css/addBook.css}">
+
+    <link rel="stylesheet"
+          th:href="@{/css/header.css}">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+</head>
+
+<body>
+
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="navbar">
+
+    <div class="nav-container">
+
+        <div class="logo">
+            <a th:href="@{/}">
+                <img th:src="@{/images/logo.png}"
+                     alt="HamroKitab Logo"
+                     class="logo-img">
+            </a>
+        </div>
+
+        <nav class="nav-menu">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/product}">Products</a></li>
+                <li><a th:href="@{/category}">Category</a></li>
+                <li><a th:href="@{/about}">About Us</a></li>
+                <li>
+                    <a th:href="@{/addBook}" class="active">
+                        <i class="fa-solid fa-plus"></i>
+                        Sell a Book
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div class="nav-right">
+
+            <div class="nav-cart">
+                <a th:href="@{/cart}" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+
+            <div class="user-menu"
+                 th:if="${session.loggedInUser != null}">
+
+                <i class="fa-solid fa-user"
+                   id="user-icon"
+                   aria-label="User menu"
+                   role="button"
+                   tabindex="0"></i>
+
+                <div class="dropdown-menu" id="dropdown">
+
+                    <p class="welcome-user">
+                        Hello,
+                        <span th:text="${session.loggedInUser.username}"></span>
+                    </p>
+
+                    <a th:href="@{/profile}">
+                        <i class="fa-solid fa-id-card"></i> My Profile
+                    </a>
+                    <a th:href="@{/myOrders}">
+                        <i class="fa-solid fa-box"></i> My Orders
+                    </a>
+                    <a th:href="@{/sellerorders}">
+                        <i class="fa-solid fa-truck"></i> Seller Orders
+                    </a>
+                    <a th:href="@{/myListings}">
+                        <i class="fa-solid fa-book-open"></i> My Listings
+                    </a>
+                    <a th:href="@{/messages}">
+                        <i class="fa-solid fa-inbox"></i> Inbox
+                    </a>
+                    <a th:href="@{/sentMessages}">
+                        <i class="fa-solid fa-paper-plane"></i> Sent Messages
+                    </a>
+                    <a th:href="@{/wishlist}">
+                        <i class="fa-solid fa-heart"></i> Wishlist
+                    </a>
+                    <a th:href="@{/logoutUser}">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
+
+                </div>
+            </div>
+
+            <div class="auth-links"
+                 th:if="${session.loggedInUser == null}">
+                <a th:href="@{/register}">Create Account</a>
+                <a th:href="@{/login}">Log In</a>
+            </div>
+
+            <div class="nav-icon"
+                 id="menu-icon"
+                 aria-label="Open navigation menu"
+                 role="button"
+                 tabindex="0">
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </div>
+    </div>
+</header>
+
+
+
+<!-- ================= PAGE ================= -->
+
+<main class="sell-page">
+
+
+    <!-- ================= BREADCRUMB ================= -->
+
+    <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a th:href="@{/}">Home</a>
+        <i class="fa-solid fa-chevron-right"></i>
+        <span>Sell a Book</span>
+    </nav>
+
+
+
+    <!-- ================= PAGE HEADING ================= -->
+
+    <section class="page-heading">
+
+        <div class="heading-text">
+
+            <span class="eyebrow">
+                <i class="fa-solid fa-circle-check"></i>
+                LIST YOUR BOOK IN UNDER 2 MINUTES
+            </span>
+
+            <h1>
+                Turn your shelf into
+                <span>someone's next read.</span>
+            </h1>
+
+            <p>
+                Reach thousands of students across Nepal.
+                Your listing goes live instantly — buyers
+                contact you directly through HamroKitab.
+            </p>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- ================= PROGRESS STEPPER ================= -->
+
+    <ol class="stepper" aria-label="Listing progress">
+
+        <li class="step is-active" data-step="1">
+            <span class="step-dot">
+                <i class="fa-solid fa-book"></i>
+            </span>
+            <span class="step-label">Book Info</span>
+        </li>
+
+        <li class="step" data-step="2">
+            <span class="step-dot">
+                <i class="fa-solid fa-graduation-cap"></i>
+            </span>
+            <span class="step-label">Academic</span>
+        </li>
+
+        <li class="step" data-step="3">
+            <span class="step-dot">
+                <i class="fa-solid fa-tag"></i>
+            </span>
+            <span class="step-label">Pricing</span>
+        </li>
+
+        <li class="step" data-step="4">
+            <span class="step-dot">
+                <i class="fa-solid fa-camera"></i>
+            </span>
+            <span class="step-label">Photo</span>
+        </li>
+
+        <li class="step" data-step="5">
+            <span class="step-dot">
+                <i class="fa-solid fa-rocket"></i>
+            </span>
+            <span class="step-label">Publish</span>
+        </li>
+
+    </ol>
+
+
+
+    <!-- ================= LAYOUT ================= -->
+
+    <form class="listing-layout"
+          th:action="@{/addBook}"
+          method="post"
+          enctype="multipart/form-data">
+
+
+        <!-- ================= LEFT: FORM ================= -->
+
+        <div class="listing-form">
+
+
+            <!-- ============ SECTION 01: BASIC INFO ============ -->
+
+            <section class="form-section" id="section-basic">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div>
+                        <h2>Book Information</h2>
+                        <p>Tell buyers what book you're selling.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group full-width">
+                        <label for="title">
+                            Book Title <span class="required">*</span>
+                        </label>
+                        <input type="text"
+                               id="title"
+                               name="title"
+                               placeholder="e.g. Database Management System"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="author">
+                            Author <span class="required">*</span>
+                        </label>
+                        <input type="text"
+                               id="author"
+                               name="author"
+                               placeholder="e.g. Ramez Elmasri"
+                               required>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="educationLevel">
+                            Education Level <span class="required">*</span>
+                        </label>
+                        <select id="educationLevel"
+                                name="educationLevel"
+                                required>
+                            <option value="">Select education level</option>
+                            <option value="School">School</option>
+                            <option value="+2">+2 / Higher Secondary</option>
+                            <option value="Bachelor's">Bachelor's</option>
+                            <option value="Master's">Master's</option>
+                            <option value="Entrance">Entrance / Preparation</option>
+                            <option value="Professional">Professional</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="category">
+                            Category / Field <span class="required">*</span>
+                        </label>
+                        <select id="category"
+                                name="category"
+                                required>
+                            <option value="">Select category</option>
+                            <option value="Science">Science</option>
+                            <option value="Management">Management</option>
+                            <option value="Computer Science & IT">Computer Science & IT</option>
+                            <option value="Engineering">Engineering</option>
+                            <option value="Medical & Health">Medical & Health</option>
+                            <option value="Law">Law</option>
+                            <option value="Humanities & Arts">Humanities & Arts</option>
+                            <option value="Education">Education</option>
+                            <option value="Fictional">Fictional / Reference</option>
+                            <option value="Novel">Novel/ Reference</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="stream">
+                            Stream / Faculty <span class="optional">Optional</span>
+                        </label>
+                        <input type="text"
+                               id="stream"
+                               name="stream"
+                               placeholder="e.g. Science, BICT, BBA">
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ============ SECTION 02: ACADEMIC ============ -->
+
+            <section class="form-section" id="section-academic">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+
+                    <div>
+                        <h2>Academic Details</h2>
+                        <p>Help students find your book faster.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="semester">
+                            Grade / Year / Semester <span class="optional">Optional</span>
+                        </label>
+                        <input type="text"
+                               id="semester"
+                               name="semester"
+                               placeholder="e.g. Class 10, Grade 12, 4th Semester">
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="subject">
+                            Subject <span class="optional">Optional</span>
+                        </label>
+                        <input type="text"
+                               id="subject"
+                               name="subject"
+                               placeholder="e.g. Mathematics">
+                    </div>
+
+
+                    <div class="form-group full-width">
+                        <label for="institution">
+                            Institution <span class="optional">Optional</span>
+                        </label>
+                        <input type="text"
+                               id="institution"
+                               name="institution"
+                               placeholder="e.g. Virinchi College">
+                    </div>
+
+                </div>
+
+
+                <div class="academic-note">
+                    <i class="fa-solid fa-circle-info"></i>
+                    <p>
+                        Academic details are flexible. For school books,
+                        enter the class or grade. For university books,
+                        enter the semester or year.
+                    </p>
+                </div>
+
+            </section>
+
+
+
+            <!-- ============ SECTION 03: SELLING ============ -->
+
+            <section class="form-section" id="section-selling">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        <i class="fa-solid fa-tag"></i>
+                    </div>
+
+                    <div>
+                        <h2>Selling Details</h2>
+                        <p>Price it right — books priced 30% below retail sell faster.</p>
+                    </div>
+
+                </div>
+
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="condition">
+                            Book Condition <span class="required">*</span>
+                        </label>
+                        <select id="condition"
+                                name="condition"
+                                required>
+                            <option value="">Select condition</option>
+                            <option value="New">New</option>
+                            <option value="Like New">Like New</option>
+                            <option value="Used">Used</option>
+                            <option value="Heavily Used">Heavily Used</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="price">
+                            Price <span class="required">*</span>
+                        </label>
+                        <div class="price-input">
+                            <span>NPR</span>
+                            <input type="number"
+                                   id="price"
+                                   name="price"
+                                   min="0"
+                                   step="0.01"
+                                   placeholder="500"
+                                   required>
+                        </div>
+                    </div>
+
+
+                    <div class="price-guidance full-width">
+                        <i class="fa-solid fa-lightbulb"></i>
+                        <p>
+                            <strong>Pricing tip:</strong>
+                            Similar books on HamroKitab sell for
+                            <strong>NPR 300 – 650</strong>.
+                            Average time to sell: <strong>6 days</strong>.
+                        </p>
+                    </div>
+
+
+                    <div class="form-group full-width">
+                        <label for="description">
+                            Description <span class="optional">Optional</span>
+                        </label>
+                        <textarea id="description"
+                                  name="description"
+                                  rows="5"
+                                  maxlength="500"
+                                  placeholder="Mention highlighting, notes, missing pages, or anything buyers should know."></textarea>
+                        <span class="char-counter">
+                            <span id="descCount">0</span> / 500
+                        </span>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ============ SECTION 04: PHOTO ============ -->
+
+            <section class="form-section" id="section-photo">
+
+                <div class="section-heading">
+
+                    <div class="section-number">
+                        <i class="fa-solid fa-camera"></i>
+                    </div>
+
+                    <div>
+                        <h2>Book Photo</h2>
+                        <p>Listings with clear photos sell up to 3× faster.</p>
+                    </div>
+
+                </div>
+
+
+                <label class="image-upload" id="imageUpload">
+
+                    <input type="file"
+                           name="imageFile"
+                           id="imageFile"
+                           accept="image/*">
+
+                    <div class="upload-content" id="uploadDefault">
+
+                        <div class="upload-icon">
+                            <i class="fa-solid fa-cloud-arrow-up"></i>
+                        </div>
+
+                        <strong>Drag & drop or click to upload</strong>
+                        <span>JPG, PNG or JPEG · 1200 × 1600 px works best</span>
+
+                    </div>
+
+                    <div class="upload-preview" id="uploadPreview" hidden>
+
+                        <img id="previewImg" alt="Book preview">
+
+                        <button type="button"
+                                class="remove-image"
+                                id="removeImage">
+                            <i class="fa-solid fa-xmark"></i>
+                        </button>
+
+                    </div>
+
+                </label>
+
+            </section>
+
+
+
+            <!-- ============ TRUST STRIP ============ -->
+
+            <ul class="trust-strip">
+
+                <li>
+                    <i class="fa-solid fa-bolt"></i>
+                    <span>Listing goes live instantly</span>
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-wallet"></i>
+                    <span>You keep 100% of the sale price</span>
+                </li>
+
+                <li>
+                    <i class="fa-solid fa-comments"></i>
+                    <span>Buyers message you directly</span>
+                </li>
+
+            </ul>
+
+
+
+            <!-- ============ ACTIONS ============ -->
+
+            <div class="form-actions">
+
+                <button type="button"
+                        class="ghost-button"
+                        id="saveDraft">
+                    <i class="fa-regular fa-floppy-disk"></i>
+                    Save as Draft
+                </button>
+
+                <a th:href="@{/}" class="cancel-button">
+                    Cancel
+                </a>
+
+                <button type="submit" class="submit-button">
+                    <span>Publish Listing</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- ================= RIGHT: PREVIEW ================= -->
+
+        <aside class="listing-preview">
+
+            <div class="preview-header">
+                <i class="fa-solid fa-eye"></i>
+                <span>Live Preview</span>
+                <span class="preview-badge">This is what buyers see</span>
+            </div>
+
+
+            <article class="preview-card">
+
+                <div class="preview-image">
+                    <img id="previewCardImg"
+                         src=""
+                         alt=""
+                         hidden>
+                    <div class="preview-image-placeholder"
+                         id="previewPlaceholder">
+                        <i class="fa-solid fa-image"></i>
+                    </div>
+                    <span class="condition-badge"
+                          id="previewCondition">
+                        Condition
+                    </span>
+                </div>
+
+
+                <div class="preview-info">
+
+                    <span class="preview-category"
+                          id="previewCategory">
+                        Category
+                    </span>
+
+                    <h3 id="previewTitle">
+                        Your book title
+                    </h3>
+
+                    <p class="preview-author"
+                       id="previewAuthor">
+                        Author name
+                    </p>
+
+                    <p class="preview-description"
+                       id="previewDescription">
+                        Short description of your book will appear here.
+                    </p>
+
+
+                    <div class="preview-bottom">
+
+                        <span class="preview-price"
+                              id="previewPrice">
+                            NPR 0
+                        </span>
+
+                        <span class="preview-view-btn">
+                            View
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+
+
+            <!-- ============ TIPS PANEL ============ -->
+
+            <div class="tips-panel">
+
+                <h4>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i>
+                    Tips for a great listing
+                </h4>
+
+                <ul>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Use natural lighting for photos
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Mention any highlighting or notes
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Price 30–50% below retail for used books
+                    </li>
+                    <li>
+                        <i class="fa-solid fa-check"></i>
+                        Respond to buyers within 24 hours
+                    </li>
+                </ul>
+
+            </div>
+
+        </aside>
+
+
+    </form>
+
+</main>
+
+
+<!-- ================= JS (light, no framework) ================= -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* ---------- Live preview bindings ---------- */
+        const bind = (inputId, targetId, fallback, formatter) => {
+            const input = document.getElementById(inputId);
+            const target = document.getElementById(targetId);
+            if (!input || !target) return;
+
+            const update = () => {
+                const v = input.value.trim();
+                target.textContent = v ? (formatter ? formatter(v) : v) : fallback;
+            };
+            input.addEventListener("input", update);
+            input.addEventListener("change", update);
+            update();
+        };
+
+        bind("title", "previewTitle", "Your book title");
+        bind("author", "previewAuthor", "Author name");
+        bind("category", "previewCategory", "Category");
+        bind("condition", "previewCondition", "Condition");
+        bind("description", "previewDescription",
+            "Short description of your book will appear here.");
+
+        bind("price", "previewPrice", "NPR 0",
+            v => "NPR " + Number(v).toLocaleString());
+
+
+        /* ---------- Description character counter ---------- */
+        const desc = document.getElementById("description");
+        const descCount = document.getElementById("descCount");
+        if (desc && descCount) {
+            desc.addEventListener("input", () => {
+                descCount.textContent = desc.value.length;
+            });
+        }
+
+
+        /* ---------- Image preview ---------- */
+        const fileInput = document.getElementById("imageFile");
+        const uploadDefault = document.getElementById("uploadDefault");
+        const uploadPreview = document.getElementById("uploadPreview");
+        const previewImg = document.getElementById("previewImg");
+        const previewCardImg = document.getElementById("previewCardImg");
+        const previewPlaceholder = document.getElementById("previewPlaceholder");
+        const removeBtn = document.getElementById("removeImage");
+
+        if (fileInput) {
+            fileInput.addEventListener("change", () => {
+                const file = fileInput.files && fileInput.files[0];
+                if (!file) return;
+
+                const url = URL.createObjectURL(file);
+
+                previewImg.src = url;
+                uploadDefault.hidden = true;
+                uploadPreview.hidden = false;
+
+                previewCardImg.src = url;
+                previewCardImg.hidden = false;
+                previewPlaceholder.style.display = "none";
+            });
+        }
+
+        if (removeBtn) {
+            removeBtn.addEventListener("click", (e) => {
+                e.preventDefault();
+                fileInput.value = "";
+                uploadDefault.hidden = false;
+                uploadPreview.hidden = true;
+                previewCardImg.hidden = true;
+                previewPlaceholder.style.display = "";
+            });
+        }
+
+
+        /* ---------- Stepper: mark sections as user scrolls ---------- */
+        const sections = [
+            { id: "section-basic",    step: 1 },
+            { id: "section-academic", step: 2 },
+            { id: "section-selling",  step: 3 },
+            { id: "section-photo",    step: 4 }
+        ];
+
+        const steps = document.querySelectorAll(".stepper .step");
+
+        const setActive = (n) => {
+            steps.forEach(s => {
+                const idx = Number(s.dataset.step);
+                s.classList.toggle("is-active", idx === n);
+                s.classList.toggle("is-done",  idx < n);
+            });
+        };
+
+        if ("IntersectionObserver" in window) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const match = sections.find(s => s.id === entry.target.id);
+                        if (match) setActive(match.step);
+                    }
+                });
+            }, { rootMargin: "-45% 0px -45% 0px" });
+
+            sections.forEach(s => {
+                const el = document.getElementById(s.id);
+                if (el) obs.observe(el);
+            });
+        }
+
+    });
+</script>
+
+</body>
+</html>

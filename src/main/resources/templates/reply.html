@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Reply | HamroKitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/reply.css}">
+
+
+</head>
+
+<body>
+
+<div class="reply-page">
+
+    <div class="reply-container">
+
+        <h1>Reply to Message</h1>
+
+        <div class="reply-original-card">
+
+            <h3 th:text="${originalMessage.book.title}">
+                Book Title
+            </h3>
+
+            <p>
+                <strong>To:</strong>
+                <span th:text="${originalMessage.sender.username}">
+                    Sender
+                </span>
+            </p>
+
+            <p>
+                <strong>Original Message:</strong>
+            </p>
+
+            <p th:text="${originalMessage.message}">
+                Original message
+            </p>
+
+        </div>
+
+        <form th:action="@{/sendReply}"
+              method="post"
+              class="reply-form">
+
+            <input type="hidden"
+                   name="messageId"
+                   th:value="${originalMessage.id}">
+
+            <label for="message">
+                Your Reply
+            </label>
+
+            <textarea id="message"
+                      name="message"
+                      rows="6"
+                      maxlength="1000"
+                      placeholder="Write your reply..."
+                      required></textarea>
+
+            <button type="submit">
+                Send Reply
+            </button>
+
+        </form>
+
+        <a th:href="@{/messages}"
+           class="reply-back-link">
+            Back to Inbox
+        </a>
+
+    </div>
+
+</div>
+
+
+</body>
+</html>

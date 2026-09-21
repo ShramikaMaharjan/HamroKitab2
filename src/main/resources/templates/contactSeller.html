@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Seller | Hamro Kitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/contactSeller.css}">
+</head>
+
+<body>
+
+<div class="contact-container">
+
+    <a th:href="@{/bookdetail/{id}(id=${book.id})}" class="back-link">
+        ← Back to Book
+    </a>
+
+    <div class="contact-card">
+
+        <h1>Contact Seller</h1>
+
+        <p class="book-title">
+            You are contacting the seller about:
+        </p>
+
+        <h2 th:text="${book.title}">
+            Book Title
+        </h2>
+
+        <p class="seller">
+            Seller:
+            <strong th:text="${book.owner.username}">
+                Seller Name
+            </strong>
+        </p>
+
+        <form th:action="@{/contactSeller}" method="post">
+
+            <input type="hidden"
+                   name="bookId"
+                   th:value="${book.id}">
+
+            <label for="message">
+                Your Message
+            </label>
+
+            <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Hi, is this book still available?"
+                    required></textarea>
+
+            <button type="submit">
+                Send Message
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>

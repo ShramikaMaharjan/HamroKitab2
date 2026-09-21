@@ -1,0 +1,314 @@
+/* =========================
+   GENERAL
+========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif !important;
+    color: #173B73;
+    background-color: #FFFFFF;
+}
+
+
+/* =========================
+   FEEDBACK PAGE
+========================= */
+
+.feedback-page {
+    min-height: calc(100vh - 80px);
+
+    display: flex;
+    justify-content: center;
+
+    padding: 55px 20px 80px;
+
+    background-color: #FFFFFF;
+}
+
+.feedback-container {
+    width: 650px;
+    max-width: 100%;
+}
+
+
+/* =========================
+   HEADING
+========================= */
+
+.feedback-heading {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.feedback-label {
+    display: inline-block;
+
+    margin-bottom: 10px;
+
+    color: #2696E8;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 1.5px;
+}
+
+.feedback-heading h1 {
+    color: #173B73;
+
+    font-family: Arial, sans-serif !important;
+
+    font-size: 32px;
+    font-weight: 700;
+
+    margin-bottom: 8px;
+}
+
+.feedback-heading p {
+    color: #4f6787;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    max-width: 500px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================
+   FEEDBACK CARD
+========================= */
+
+.feedback-card {
+    background-color: #FFFFFF;
+
+    border: 1px solid #EAF5FF;
+
+    border-radius: 18px;
+
+    padding: 30px;
+
+    box-shadow:
+            0 8px 25px rgba(23, 59, 115, 0.08);
+}
+
+
+/* =========================
+   FORM
+========================= */
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+
+    margin-bottom: 25px;
+}
+
+.form-group label {
+    color: #173B73;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    margin-bottom: 10px;
+}
+
+
+/* =========================
+   RATING
+========================= */
+
+.rating-options {
+    display: flex;
+    flex-direction: row-reverse;
+
+    justify-content: flex-end;
+
+    gap: 5px;
+}
+
+.rating-options input {
+    display: none;
+}
+
+.rating-options label {
+    color: #d5e7f7;
+
+    font-size: 28px;
+
+    cursor: pointer;
+
+    margin: 0;
+
+    transition: 0.2s ease;
+}
+
+.rating-options label:hover,
+.rating-options label:hover ~ label {
+    color: #FFB82E;
+}
+
+.rating-options input:checked ~ label {
+    color: #FFB82E;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+.form-group textarea {
+    width: 100%;
+
+    padding: 14px;
+
+    border: 1px solid #d5e7f7;
+
+    border-radius: 10px;
+
+    background-color: #FFFFFF;
+
+    color: #173B73;
+
+    font-family: Arial, sans-serif !important;
+
+    font-size: 14px;
+
+    line-height: 1.6;
+
+    outline: none;
+
+    resize: vertical;
+
+    transition: 0.25s ease;
+}
+
+.form-group textarea:focus {
+    border-color: #2696E8;
+
+    box-shadow:
+            0 0 0 3px rgba(38, 150, 232, 0.10);
+}
+
+.form-group textarea::placeholder {
+    color: #9aabc0;
+}
+
+
+/* =========================
+   ACTIONS
+========================= */
+
+.feedback-actions {
+    display: flex;
+
+    justify-content: flex-end;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-top: 5px;
+}
+
+.feedback-actions a {
+    color: #173B73;
+
+    text-decoration: none;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    padding: 11px 18px;
+
+    border-radius: 8px;
+
+    transition: 0.25s ease;
+}
+
+.feedback-actions a:hover {
+    background-color: #EAF5FF;
+
+    color: #2696E8;
+}
+
+.feedback-actions button {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 8px;
+
+    padding: 11px 20px;
+
+    background-color: #2696E8;
+
+    color: #FFFFFF;
+
+    border: none;
+
+    border-radius: 25px;
+
+    font-family: Arial, sans-serif !important;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition: 0.25s ease;
+}
+
+.feedback-actions button:hover {
+    background-color: #173B73;
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    .feedback-page {
+        padding: 35px 15px 60px;
+    }
+
+    .feedback-heading h1 {
+        font-size: 27px;
+    }
+
+    .feedback-heading p {
+        font-size: 13px;
+    }
+
+    .feedback-card {
+        padding: 22px;
+        border-radius: 14px;
+    }
+
+    .feedback-actions {
+        flex-direction: column-reverse;
+
+        align-items: stretch;
+    }
+
+    .feedback-actions a,
+    .feedback-actions button {
+        width: 100%;
+
+        text-align: center;
+
+        justify-content: center;
+    }
+}

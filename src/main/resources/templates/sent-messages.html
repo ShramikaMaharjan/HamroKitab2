@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sent Messages | HamroKitab</title>
+
+    <link rel="stylesheet" th:href="@{/css/message.css}">
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<header class="message-navbar">
+
+    <a th:href="@{/}" class="message-logo">
+        <i class="fa-solid fa-book-open"></i>
+        Hamro<span>Kitab</span>
+    </a>
+
+    <a th:href="@{/}" class="back-home">
+        <i class="fa-solid fa-arrow-left"></i>
+        Home
+    </a>
+
+</header>
+
+
+<!-- ================= MAIN CONTENT ================= -->
+
+<main class="message-container">
+
+    <div class="message-heading">
+
+        <div>
+            <p class="small-heading">YOUR COMMUNICATION</p>
+
+            <h1>Sent Messages</h1>
+
+            <p class="heading-description">
+                Keep track of the messages you have sent.
+            </p>
+        </div>
+
+        <a th:href="@{/messages}" class="message-switch-btn">
+            <i class="fa-regular fa-envelope"></i>
+            Inbox
+        </a>
+
+    </div>
+
+
+    <!-- EMPTY STATE -->
+
+    <div class="empty-message"
+         th:if="${#lists.isEmpty(messages)}">
+
+        <div class="empty-icon">
+            <i class="fa-regular fa-paper-plane"></i>
+        </div>
+
+        <h2>No sent messages</h2>
+
+        <p>
+            Your conversations with sellers will appear here
+            after you send a message.
+        </p>
+
+        <a th:href="@{/product}" class="browse-btn">
+            Explore Books
+        </a>
+
+    </div>
+
+
+    <!-- SENT MESSAGE LIST -->
+
+    <div class="message-list"
+         th:unless="${#lists.isEmpty(messages)}">
+
+        <div class="message-card"
+             th:each="msg : ${messages}">
+
+            <!-- USER INFORMATION -->
+
+            <div class="message-card-top">
+
+                <div class="person-info">
+
+                    <div class="person-avatar">
+                        <i class="fa-solid fa-user"></i>
+                    </div>
+
+                    <div>
+
+                        <h3 th:text="${msg.receiver.username}">
+                            Receiver Name
+                        </h3>
+
+                        <p th:text="${msg.receiver.email}">
+                            receiver@email.com
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <span class="message-label sent-label">
+                    <i class="fa-regular fa-paper-plane"></i>
+                    Sent
+                </span>
+
+            </div>
+
+
+            <!-- BOOK INFORMATION -->
+
+            <div class="book-reference">
+
+                <i class="fa-solid fa-book"></i>
+
+                <div>
+
+                    <span>Regarding book</span>
+
+                    <h4 th:text="${msg.book.title}">
+                        Book Title
+                    </h4>
+
+                </div>
+
+            </div>
+
+
+            <!-- MESSAGE CONTENT -->
+
+            <div class="message-content">
+
+                <p class="content-label">
+                    Your Message
+                </p>
+
+                <p th:text="${msg.message}">
+                    Message content
+                </p>
+
+            </div>
+
+
+            <!-- CARD FOOTER -->
+
+            <div class="message-card-bottom">
+
+                <span class="message-email">
+
+                    <i class="fa-regular fa-envelope"></i>
+
+                    <span th:text="${msg.receiver.email}">
+                        Email
+                    </span>
+
+                </span>
+
+                <a th:href="@{/messages}"
+                   class="reply-link">
+
+                    Go to Inbox
+                    <i class="fa-solid fa-arrow-right"></i>
+
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+</body>
+</html>

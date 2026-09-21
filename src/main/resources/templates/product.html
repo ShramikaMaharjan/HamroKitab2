@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>HamroKitab | Products</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <!-- Main CSS -->
+    <link rel="stylesheet" th:href="@{/css/header.css}">
+    <link rel="stylesheet" th:href="@{/css/product.css}">
+    <link rel="stylesheet" th:href="@{/css/menuresponsive.css}">
+    <link rel="stylesheet" th:href="@{/css/footer.css}">
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+<header class="navbar">
+    <div class="nav-container">
+
+        <!-- Logo -->
+        <div class="logo">
+            <a th:href="@{/}">
+                <img
+                        th:src="@{/images/logo.png}"
+                        alt="HamroKitab Logo"
+                        class="logo-img"
+                >
+            </a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="nav-menu">
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/product}">Products</a></li>
+                <li><a th:href="@{/category}">Category</a></li>
+                <li><a th:href="@{/about}">About Us</a></li>
+                <li>
+                <li>
+                    <a th:href="@{/addBook}">
+                        Sell a Book
+                    </a>
+                </li>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Right Navigation -->
+        <div class="nav-right">
+
+            <!-- Cart -->
+            <div class="nav-cart">
+                <a th:href="@{/cart}" aria-label="Shopping cart">
+                    <i class="fa-solid fa-cart-shopping"></i>
+                </a>
+            </div>
+
+            <!-- ================= USER ================= -->
+            <div class="user-menu"
+                 th:if="${session.loggedInUser != null}">
+
+                <i
+                        class="fa-solid fa-user"
+                        id="user-icon"
+                        aria-label="User menu"
+                        role="button"
+                        tabindex="0">
+                </i>
+
+                <div class="dropdown-menu" id="dropdown">
+
+                    <p class="welcome-user">
+                        Hello,
+                        <span th:text="${session.loggedInUser.username}"></span>
+                    </p>
+
+                    <a th:href="@{/profile}">
+                        <i class="fa-solid fa-id-card"></i>
+                        My Profile
+                    </a>
+
+                    <a th:href="@{/myOrders}">
+                        <i class="fa-solid fa-box"></i>
+                        My Orders
+                    </a>
+
+                    <a th:href="@{/sellerorders}">
+                        <i class="fa-solid fa-truck"></i>
+                        Seller Orders
+                    </a>
+
+                    <a th:href="@{/myListings}">
+                        <i class="fa-solid fa-book-open"></i>
+                        My Listings
+                    </a>
+
+                    <a th:href="@{/messages}">
+                        <i class="fa-solid fa-inbox"></i>
+                        Inbox
+                    </a>
+
+                    <a th:href="@{/sentMessages}">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        Sent Messages
+                    </a>
+
+                    <a th:href="@{/wishlist}">
+                        <i class="fa-solid fa-heart"></i>
+                        Wishlist
+                    </a>
+
+                    <a th:href="@{/logoutUser}">
+                        <i class="fa-solid fa-right-from-bracket"></i>
+                        Logout
+                    </a>
+
+                </div>
+            </div>
+
+            <!-- Login / Register only for logged-out users -->
+            <div class="auth-links"
+                 th:if="${session.loggedInUser == null}">
+
+                <a th:href="@{/register}">Create Account</a>
+                <a th:href="@{/login}">Log In</a>
+
+            </div>
+
+            <!-- Mobile Menu -->
+            <div
+                    class="nav-icon"
+                    id="menu-icon"
+                    aria-label="Open navigation menu"
+                    role="button"
+                    tabindex="0"
+            >
+                <i class="fa-solid fa-bars"></i>
+            </div>
+
+        </div>
+        <!-- /.nav-right -->
+
+    </div>
+    <!-- /.nav-container -->
+</header>
+
+<!-- ================= PRODUCT PAGE ================= -->
+<main class="product-page">
+
+    <!-- Wishlist Message -->
+    <div class="wishlist-message"
+         th:if="${wishlistMessage != null}"
+         th:text="${wishlistMessage}">
+        Book added to your wishlist!
+    </div>
+
+    <div class="product-filter-section">
+
+        <form class="search-filter-form" id="searchFilterForm">
+
+            <!-- Search by Title -->
+            <div class="filter-group search-group">
+                <label for="title">Search Books</label>
+                <input type="text"
+                       id="title"
+                       name="title"
+                       placeholder="Search by book title...">
+            </div>
+
+            <!-- Category -->
+            <div class="filter-group">
+                <label for="category">Category</label>
+                <select id="category" name="category">
+                    <option value="">All Categories</option>
+                    <option value="Programming">Programming</option>
+                    <option value="Management">Management</option>
+                    <option value="Database">Database</option>
+                    <option value="Networking">Networking</option>
+                    <option value="Software Engineering">Software Engineering</option>
+                </select>
+            </div>
+
+            <!-- Semester -->
+            <div class="filter-group">
+                <label for="semester">Semester</label>
+                <select id="semester" name="semester">
+                    <option value="">All Semesters</option>
+                    <option value="1st">1st Semester</option>
+                    <option value="2nd">2nd Semester</option>
+                    <option value="3rd">3rd Semester</option>
+                    <option value="4th">4th Semester</option>
+                    <option value="5th">5th Semester</option>
+                    <option value="6th">6th Semester</option>
+                    <option value="7th">7th Semester</option>
+                    <option value="8th">8th Semester</option>
+                </select>
+            </div>
+
+            <!-- Condition -->
+            <div class="filter-group">
+                <label for="condition">Condition</label>
+                <select id="condition" name="condition">
+                    <option value="">All Conditions</option>
+                    <option value="New">New</option>
+                    <option value="Used">Used</option>
+                </select>
+            </div>
+
+            <!-- Buttons -->
+            <div class="filter-buttons">
+                <button type="submit" class="search-button">
+                    <i class="fa-solid fa-search"></i>
+                    Search
+                </button>
+
+                <a th:href="@{/product}" class="clear-button">
+                    Clear
+                </a>
+            </div>
+
+        </form>
+
+        <!-- Results Count -->
+        <div class="results-info">
+            <span class="results-count" id="resultsCount">
+                0
+            </span>
+            <span>Books Available</span>
+        </div>
+
+    </div>
+
+    <!-- ================= PRODUCT GRID ================= -->
+    <section class="product-grid" id="productGrid">
+
+        <div class="product-card" th:each="book : ${books}">
+
+            <!-- Product Image -->
+            <div class="product-image">
+
+                <span class="condition-badge"
+                      th:classappend="${book.condition != null ? book.condition.toLowerCase().replace(' ', '-') : 'used'}"
+                      th:text="${book.condition}">
+                    Used
+                </span>
+
+                <form th:action="@{/wishlist/add}" method="post" class="wishlist-form">
+                    <input type="hidden" name="bookId" th:value="${book.id}">
+                    <button type="submit"
+                            class="wishlist-btn"
+                            title="Add to Wishlist">
+                        <i class="fa-regular fa-heart"></i>
+                    </button>
+                </form>
+
+                <img th:if="${book.imageBase64 != null}"
+                     th:src="'data:' + ${book.imageType} + ';base64,' + ${book.imageBase64}"
+                     alt="Book Image">
+
+                <p th:if="${book.imageBase64 == null}">No Image</p>
+
+            </div>
+
+            <!-- Product Info -->
+            <div class="product-info">
+
+                <span class="product-category" th:text="${book.category}">
+                    Category
+                </span>
+
+                <h3 th:text="${book.title}">Book Title</h3>
+
+                <p class="product-description" th:text="${book.description}">
+                    Book description goes here.
+                </p>
+
+                <p class="book-owner">
+                    Seller:
+                    <span th:text="${book.owner.username}"></span>
+                </p>
+
+                <div class="product-bottom">
+                    <span class="price" th:text="'Rs. ' + ${book.price}">
+                        Rs. 0
+                    </span>
+
+                    <a th:href="@{'/bookdetail/' + ${book.id}}" class="view-btn">
+                        View Details
+                    </a>
+                </div>
+
+            </div>
+
+        </div>
+
+        <!-- Empty state -->
+        <p th:if="${books == null or books.isEmpty()}" class="no-books">
+            No books available at the moment.
+        </p>
+
+    </section>
+
+    <!-- ================= PAGINATION ================= -->
+    <div class="pagination">
+        <button class="page-btn previous">
+            <i class="fa-solid fa-chevron-left"></i>
+        </button>
+
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn">3</button>
+
+        <button class="page-btn next">
+            <i class="fa-solid fa-chevron-right"></i>
+        </button>
+    </div>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="footer">
+
+    <div class="footer-container">
+
+        <div class="footer-about">
+            <h3>HamroKitab</h3>
+            <p>
+                Your one-stop platform for buying and selling
+                second-hand books. Empowering readers and
+                promoting reuse.
+            </p>
+        </div>
+
+        <div class="footer-links">
+            <h4>Quick Links</h4>
+            <ul>
+                <li><a th:href="@{/}">Home</a></li>
+                <li><a th:href="@{/category}">Categories</a></li>
+                <li><a th:href="@{/product}">Products</a></li>
+                <li><a th:href="@{/about}">About Us</a></li>
+                <li><a th:href="@{/seller}">Become a Seller</a></li>
+            </ul>
+        </div>
+
+        <div class="footer-contact">
+            <h4>Contact</h4>
+            <p>Email: support@hamrokitab.com</p>
+            <p>Phone: +977-9800000000</p>
+            <p>Address: Kathmandu, Nepal</p>
+        </div>
+
+    </div>
+
+    <div class="footer-bottom">
+        <p>&copy; 2026 HamroKitab. All rights reserved.</p>
+    </div>
+
+</footer>
+
+<!-- ================= JAVASCRIPT ================= -->
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+
+        /* ---------- User dropdown toggle ---------- */
+        const userIcon = document.getElementById("user-icon");
+        const dropdown = document.getElementById("dropdown");
+
+        if (userIcon && dropdown) {
+
+            userIcon.addEventListener("click", function (e) {
+                e.stopPropagation();
+                dropdown.classList.toggle("show");
+            });
+
+            userIcon.addEventListener("keydown", function (e) {
+                if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    dropdown.classList.toggle("show");
+                }
+            });
+
+            /* Close dropdown when clicking outside */
+            document.addEventListener("click", function (e) {
+                if (!userIcon.contains(e.target) &&
+                    !dropdown.contains(e.target)) {
+                    dropdown.classList.remove("show");
+                }
+            });
+        }
+
+        /* ---------- Mobile menu toggle ---------- */
+        const menuIcon = document.getElementById("menu-icon");
+        const navMenu = document.querySelector(".nav-menu");
+
+        if (menuIcon && navMenu) {
+            menuIcon.addEventListener("click", function () {
+                navMenu.classList.toggle("active");
+            });
+        }
+
+        /* ---------- Initial book load ---------- */
+        loadBooks();
+
+        /* ---------- Search form ---------- */
+        const searchFilterForm = document.getElementById("searchFilterForm");
+
+        if (searchFilterForm) {
+            searchFilterForm.addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                const title = document.getElementById("title").value;
+                const category = document.getElementById("category").value;
+                const semester = document.getElementById("semester").value;
+                const condition = document.getElementById("condition").value;
+
+                const params = new URLSearchParams();
+
+                if (title) params.append("title", title);
+                if (category) params.append("category", category);
+                if (semester) params.append("semester", semester);
+                if (condition) params.append("condition", condition);
+
+                fetch("/api/books/search?" + params.toString())
+                    .then(response => {
+                        if (!response.ok) throw new Error("Search failed");
+                        return response.json();
+                    })
+                    .then(books => {
+                        displayBooks(books);
+                        document.getElementById("resultsCount").textContent =
+                            books.length;
+                    })
+                    .catch(error => console.error("Error searching books:", error));
+            });
+        }
+    });
+
+    /* ---------- Load all books ---------- */
+    function loadBooks() {
+        fetch("/api/books")
+            .then(response => {
+                if (!response.ok) throw new Error("Failed to load books");
+                return response.json();
+            })
+            .then(books => {
+                displayBooks(books);
+                document.getElementById("resultsCount").textContent =
+                    books.length;
+            })
+            .catch(error => console.error("Error loading books:", error));
+    }
+
+    /* ---------- Render book cards ---------- */
+    function displayBooks(books) {
+
+        const productGrid = document.getElementById("productGrid");
+
+        productGrid.innerHTML = "";
+
+        if (!books || books.length === 0) {
+            productGrid.innerHTML =
+                '<p class="no-books">No books available at the moment.</p>';
+            return;
+        }
+
+        books.forEach(book => {
+
+            const card = document.createElement("div");
+            card.className = "product-card";
+
+            let imageHTML = "";
+            if (book.image) {
+                imageHTML =
+                    '<img src="data:' +
+                    book.imageType +
+                    ';base64,' +
+                    book.image +
+                    '" alt="Book Image">';
+            } else {
+                imageHTML = "<p>No Image</p>";
+            }
+
+            card.innerHTML = `
+                <div class="product-image">
+
+                    <span class="condition-badge">
+                        ${book.condition || "Used"}
+                    </span>
+
+                    <form action="/wishlist/add"
+                          method="post"
+                          class="wishlist-form">
+
+                        <input type="hidden"
+                               name="bookId"
+                               value="${book.id}">
+
+                        <button type="submit"
+                                class="wishlist-btn"
+                                title="Add to Wishlist">
+
+                            <i class="fa-regular fa-heart"></i>
+
+                        </button>
+
+                    </form>
+
+                    ${imageHTML}
+
+                </div>
+
+                <div class="product-info">
+
+                    <span class="product-category">
+                        ${book.category || "Category"}
+                    </span>
+
+                    <h3>${book.title}</h3>
+
+                    <p class="product-description">
+                        ${book.description || ""}
+                    </p>
+
+                    <p class="book-owner">
+                        Seller:
+                        ${book.owner ? book.owner.username : "Unknown"}
+                    </p>
+
+                    <div class="product-bottom">
+
+                        <span class="price">
+                            Rs. ${book.price}
+                        </span>
+
+                        <a href="/bookdetail/${book.id}" class="view-btn">
+                            View Details
+                        </a>
+
+                    </div>
+
+                </div>
+            `;
+
+            productGrid.appendChild(card);
+        });
+    }
+</script>
+
+</body>
+</html>
