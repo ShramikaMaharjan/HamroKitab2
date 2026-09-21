@@ -1,14 +1,20 @@
-# Use an of icial lightweight OpenJDK runtime as a parent image
-FROM eclipse-temurin:17-jdk
-# Set the working directory inside the container
+# Build stage
+FROM maven:3.9.9-eclipse-temurin-21 AS build
+
 WORKDIR /app
-# Install Maven inside the container to build from source
-RUN apt-get update && apt-get install -y maven
-# Copy the entire project directory into the container
-COPY . .
-# Build the Spring Boot application, bypassing unit tests for deployment
+
+COPY pom.xml .
+COPY src ./src
+
 RUN mvn clean package -DskipTests
-# Expose the standard port for web traf ic
+
+# Run stage
+FROM eclipse-temurin:21-jre
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar app.jar
+
 EXPOSE 8080
-# Execute the compiled application using dynamic jar handling
-CMD ["sh", "-c", "java -jar target/*.jar"]
+
+CMD ["java", "-jar", "app.jar"]
